@@ -1,0 +1,52 @@
+/* _helix/microtypography.css — the last 5% of typographic polish.
+   Deterministic, brief-aware, applied alongside the Visual Critic
+   overlay. Generated: 2026-05-13T08:48:49Z
+   Tier 1 always:   4
+   Tier 2 (size):   2
+   Tier 3 (brief):  3
+*/
+
+/* [tier_1_always] kerning_and_ligatures
+   Enables kerning + ligatures + contextual alternates + high-DPI smoothing. Universally improves every glyph pair.
+*/
+body { font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+/* [tier_1_always] balance_heading_wraps
+   Modern browsers balance heading line lengths to avoid single-word last lines (widows). Pretty falls back for older browsers; balance wins where supported.
+*/
+h1, h2, h3 { text-wrap: balance; text-wrap: pretty; }
+
+/* [tier_1_always] balance_body_paragraphs
+   Reduces orphans + widows in paragraph copy.
+*/
+p { text-wrap: pretty; }
+
+/* [tier_1_always] selection_brand_color
+   Text selection picks up the brand primary instead of the browser default sky-blue.
+*/
+::selection { background: var(--forest, #2f5d3a); color: #fff; }
+
+/* [tier_2_size] display_optical_spacing
+   At 70px display size, optical kerning shifts tracking to -0.028em and line-height to 1.05 — display type wants tighter spacing than body.
+*/
+h1 { letter-spacing: -0.028em; line-height: 1.05; }
+
+/* [tier_2_size] display_oldstyle_figures
+   Old-style figures (1234567890 sit on the baseline + below) read as editorial; lining figures read as spreadsheet.
+*/
+h1, h2 { font-variant-numeric: oldstyle-nums proportional-nums; }
+
+/* [tier_3_brief] tabular_numerals
+   Metrics tables need decimal-aligned digits; tabular numerals give every digit the same width.
+*/
+[id*='metrics'] dl, [id*='metrics'] dd, .metrics dd, .ledger dd { font-variant-numeric: tabular-nums lining-nums; font-feature-settings: 'tnum' 1; }
+
+/* [tier_3_brief] longform_measure
+   Reading measure caps body lines at 65ch (Tschichold band); hanging-punctuation pulls opening/closing quotes outside the measure for clean optical edges.
+*/
+.longform p, .longform-body p, article p, [id*='longform'] p { max-width: 65ch; text-wrap: pretty; hanging-punctuation: first last; }
+
+/* [tier_3_brief] pull_quote_microtype
+   Smart curly quotes inside pull-quotes; disable hyphenation (display sizes shouldn't break words).
+*/
+blockquote, .pull-quote { quotes: '“' '”' '‘' '’'; hyphens: none; text-wrap: pretty; }

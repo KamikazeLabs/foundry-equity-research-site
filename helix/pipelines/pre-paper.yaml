@@ -1,0 +1,57 @@
+name: pre-paper
+description: >
+  Runs after a brief is opened and before drafting starts.
+  Surfaces precedents and generates candidate theses for the analyst.
+
+trigger:
+  on: brief_opened
+
+stages:
+
+  - id: shape-selection
+    agent: shape-selector
+    inputs: [brief]
+    outputs: [shape_choice]
+    blocking: true              # downstream stages need a shape
+
+  - id: ledger-precedent-surface
+    agent: ledger-query
+    inputs: [brief, shape_choice]
+    outputs: [precedents, must_address]
+    blocking: false              # runs in parallel with thesis generation
+
+  - id: thesis-generation
+    agent: thesis-generator
+    inputs: [brief, shape_choice, precedents]
+    outputs: [candidate_theses]
+    config:
+      max_candidates: 50
+      cycles: 4
+    funsearch:
+      enabled: true
+      cheap_gate_subset:
+        - 04-ticker-validity
+        - 15-base-rate
+        - 17-liquidity
+        - 14-counter-thesis     # light pass
+      fitness_weights:
+        pass_rate: 0.30
+        base_rate_proximity: 0.25
+        liquidity_headroom: 0.20
+        counter_thesis_weakness: 0.15
+        structural_diversity: 0.10
+
+  - id: top-T-selection
+    output: top_candidates
+    rule: |
+      take top 3 by fitness; if any two of the top 3 are structurally
+      near-duplicates (cosine > 0.85 on mechanism field), replace with
+      next-best diverse candidate
+
+  - id: analyst-handoff
+    output: brief_packet
+    contents:
+      - shape_choice
+      - precedents (highlight must_address)
+      - top_candidates (with full structured records and fitness rationale)
+      - funsearch_report

@@ -1,0 +1,77 @@
+name: post-mortem
+description: >
+  Runs when a position closes (kill switch triggered, exit rule met, or
+  discretionary close). Feeds the PRM and the ledger.
+
+trigger:
+  on: position_closed
+
+stages:
+
+  - id: gather
+    inputs:
+      - paper_id
+      - position_id
+      - ledger_entry (full structured record)
+      - paper.md
+      - appendix/argument_graph.json
+      - appendix/debate_transcript.md
+      - appendix/counter_attempt.md
+      - appendix/disagreement_matrix.md
+      - telemetry/<paper_id>.yaml
+    outputs: [position_bundle]
+
+  - id: realized-outcome
+    compute:
+      - realized_return
+      - vs_thesis: exceeded | matched | underperformed | inverted
+      - holding_period_days
+      - kill_switch_triggered: bool
+      - what_actually_happened: free text from analyst
+
+  - id: step-localization
+    actor: analyst
+    inputs: [position_bundle, realized-outcome]
+    output: step_labels
+    schema: see helix/prm/data_format.md
+    notes: |
+      For papers whose vs_thesis is 'underperformed' or 'inverted',
+      the analyst MUST localize the step(s) in the original argument
+      graph that load-bore the failure. For 'matched' / 'exceeded',
+      the analyst CAN identify steps that were robust (positive
+      training signal).
+
+  - id: ledger-update
+    write:
+      - close out the position with full structured fields
+      - update kill_switch_triggered, post_mortem_id
+
+  - id: prm-data-write
+    write:
+      - one PRM training example per labeled step
+      - destination: helix/prm/data/raw/
+
+  - id: gate-correlation
+    compute:
+      - for each gate (1-20), record pass score vs realized outcome
+      - this feeds the meta-evaluation: which gates correlate with success?
+
+  - id: counter-construction-validation
+    compute:
+      - was the strongest_counter at publish time the actual reason the
+        position lost money?
+      - was the strongest_counter ignored (recommendation == ship_with_appendix
+        but the counter was dismissed by the desk lead)?
+    notes: |
+      This is the highest-value retrospective: if the counter-construction
+      agent named the actual failure mode at publish time, the agent's
+      design is validated. If not, retune.
+
+  - id: publish-post-mortem
+    output:
+      - research/post-mortems/<ticker>-<close-date>.md
+    notes: |
+      Public post-mortems for closed positions are required by
+      constitution §VI.13. The post-mortem describes the original
+      thesis, what changed, which step(s) broke, and whether the
+      counter-construction at publish time predicted the failure.

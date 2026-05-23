@@ -1,0 +1,129 @@
+paper_id: FER-SYN-2026-Q2-GLTZ
+
+verdict: bull           # Bull = short-thesis defender; verdict bull = short thesis upheld
+margin: 0.71
+
+per_turn:
+  - turn: 1
+    side: bull
+    factual_grounding: 5
+    responsiveness: 5
+    logical_strength: 5
+    cited_external: false
+    citation_verified: true
+    notes: "Opens with three independent fact sets, each from primary disclosure. Tight setup."
+
+  - turn: 2
+    side: bear
+    factual_grounding: 4
+    responsiveness: 5
+    logical_strength: 4
+    cited_external: true
+    citation_verified: true   # Coach FY18 and Tapestry FY20 verified
+    notes: "Effective attack on the off-price framing; lands a real point."
+
+  - turn: 3
+    side: bull
+    factual_grounding: 5
+    responsiveness: 5
+    logical_strength: 5
+    cited_external: false
+    citation_verified: true
+    notes: "Surrenders the contested point cleanly and shows the thesis survives without it. Strong defensive move."
+
+  - turn: 4
+    side: bear
+    factual_grounding: 4
+    responsiveness: 4
+    logical_strength: 4
+    cited_external: true
+    citation_verified: true
+    notes: "Base-rate precedent is real, but the 6-quarter median lag (not introduced by Bear) becomes Bull's response material in turn 5."
+
+  - turn: 5
+    side: bull
+    factual_grounding: 5
+    responsiveness: 5
+    logical_strength: 5
+    cited_external: true
+    citation_verified: true
+    notes: "Uses the Bear's own precedent set against him. Mechanical kill switch is the right answer."
+
+  - turn: 6
+    side: bear
+    factual_grounding: 3
+    responsiveness: 3
+    logical_strength: 4
+    cited_external: false
+    citation_verified: true
+    notes: "Macro attack is generic; relies on consensus path. Less concrete than turns 2 and 4."
+
+  - turn: 7
+    side: bull
+    factual_grounding: 5
+    responsiveness: 5
+    logical_strength: 5
+    cited_external: false
+    citation_verified: true
+    notes: "Brand-vs-category divergence in FY24 Q1 is a key fact the paper does not emphasize enough; should be added to the body."
+
+  - turn: 8
+    side: bear
+    factual_grounding: 4
+    responsiveness: 5
+    logical_strength: 4
+    cited_external: false
+    citation_verified: true
+    notes: "Concedes honestly. Adds useful monitoring guidance on Q3 FY26 print."
+
+scores:
+  bull_total: {factual: 25, responsive: 25, logical: 25, total: 75}
+  bear_total: {factual: 15, responsive: 17, logical: 16, total: 48}
+  margin: 0.71
+
+key_findings:
+  - "Bull defended the multiple-compression thesis successfully even after conceding the off-price recognition framing in turn 3. The compression case stands on SSS, inventory, and demographic alone."
+  - "Bear's brand-led reacceleration counter was real (5/12 base rate) but the median 6-quarter lag fits the thesis horizon, and the kill switch on SSS triggers if reacceleration begins."
+  - "The brand-vs-category divergence in FY24 Q1 (GLTZ +0.5% while category +6%) surfaced in turn 7 should be added to the published paper body."
+  - "Asymmetric short risk is structurally handled: kill switches on three load-bearing variables, position sized to 5.1% of borrow availability."
+  - "Counter-construction's strongest_counter (off-price recognition) was independently surfaced by the Bear and the agent's recommendation (ship_with_appendix) was vindicated by the debate."
+
+constitutional_check:
+  passed: true
+  provisions_invoked:
+    - "Sec II.3 - all quantitative claims trace to appendix rows"
+    - "Sec II.5 - kill switch covers 4 load-bearing variables (inventory, SSS, multiple, off-price); per A.2 requirement"
+    - "Sec III.6 - argument graph passes gate 13 with conclusion-edge weights"
+    - "Sec III.7 - counter-construction was attempted; published"
+    - "Sec III.8 - disagreement matrix published"
+  notes: |
+    Clean constitutional pass. One body amendment required (brand-vs-category
+    divergence in FY24 Q1).
+
+rationale: |
+  Bull (short-thesis defender) wins decisively. Paper ships.
+
+  The substantive case is unusually strong because the Bull defended *both*
+  contested points — the off-price recognition (turn 3) and the
+  brand-reacceleration precedent (turn 5) — by absorbing the criticism and
+  showing the thesis stands without the contested input. That is the
+  signature of a robust short: it doesn't depend on a single load-bearing
+  claim.
+
+  The asymmetric-risk structural elements all worked. The kill switch
+  covers four independent variables. Position size at 1.0% is half typical
+  short sizing — appropriate for the take-out and squeeze tail risks. Borrow
+  utilization at 5.1% is far below the threshold that would constrain.
+
+  Required before publish:
+  - Add the FY24 Q1 brand-vs-category divergence to body §What we think is true.
+  - Add the Bear's monitoring guidance (Q3 FY26 SSS-watch) to body §Catalyst path.
+  - Already-disclosed off-price appendix entry stands.
+
+publication_recommendation:
+  ship: true
+  with_caveats:
+    - "Add body paragraph on FY24 Q1 brand-vs-category divergence (the deterioration is brand-specific, not macro-driven)"
+    - "Add Q3 FY26 SSS-watch to Catalyst path (if SSS returns to flat, exit before magnitude target)"
+
+constitution_version_sha: "(populated at runtime)"

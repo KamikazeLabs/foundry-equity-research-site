@@ -1,0 +1,82 @@
+paper_id: FER-SYN-2026-Q2-GLTZ
+generated_at: 2026-05-22T13:00:00Z
+
+reviewer_panel:
+  - slug: reviewer-forensics
+    verdict: concerns       # forensics-priority shape: forensics is the most engaged
+    confidence: 0.84
+    model_family: "Claude 4.X"
+    finding_count: 2
+    findings:
+      - severity: warn
+        code: REV_REC
+        paper_section: what-we-think-is-true
+        message: >
+          GLTZ FY25 10-K does not explicitly disclose the recognition policy
+          for off-price channel inventory. The paper's reconstruction (~$110M
+          at full wholesale) is plausible but unverifiable from public sources.
+          Recommend the paper present the recognition interpretation as a
+          *range* (peer-analog low: $42M; paper's central: $110M).
+        evidence: ["GLTZ FY25 10-K Item 7 p.41", "Coach FY18 10-K Item 1 p.6 (analog)"]
+      - severity: warn
+        code: WC_GAMING
+        paper_section: what-we-think-is-true
+        message: >
+          Inventory days expansion of 61% over 6 quarters is consistent with
+          either demand shortfall OR aggressive channel sell-in. Both
+          interpretations support the short thesis but lead to different
+          unwind paths. Recommend the paper distinguish the two scenarios in
+          the appendix.
+        evidence: ["GLTZ Q1 FY24 10-Q Item 1 p.18", "GLTZ Q1 FY26 10-Q Item 1 p.21"]
+
+  - slug: reviewer-industry
+    verdict: pass
+    confidence: 0.79
+    model_family: "GPT-5.X"
+    finding_count: 0
+    findings: []
+
+  - slug: reviewer-macro
+    verdict: pass
+    confidence: 0.66
+    model_family: "Claude 4.X"
+    finding_count: 1
+    findings:
+      - severity: warn
+        code: DEMAND_ELASTICITY
+        paper_section: catalyst-path
+        message: >
+          The thesis assumes continued consumer-discretionary deceleration
+          through Q4 FY26. If Fed cuts trigger faster-than-consensus consumer
+          recovery, the multiple compression timing slips. The kill switch
+          on multiple > 22x for two quarters handles this mechanically but
+          the paper should disclose the macro-path dependency explicitly.
+        evidence: ["Consensus rate-path: Bloomberg WIRP 2026-04-29"]
+
+pairwise:
+  - {a: reviewer-forensics, b: reviewer-industry, agreement: concur}
+  - {a: reviewer-forensics, b: reviewer-macro,    agreement: concur}
+  - {a: reviewer-industry,  b: reviewer-macro,    agreement: concur}
+
+disagreement_count: 0
+disjoint_priors_satisfied: true
+distinct_families_count: 2
+
+resolution:
+  notes: |
+    Forensics raised two warnings, both of which become appendix or scenario
+    additions to the paper, not body rewrites. The off-price recognition range
+    (forensics finding 1) reinforces the counter-construction's strongest_counter.
+    The inventory-bloat interpretation distinction (forensics finding 2) becomes
+    a scenario block in the appendix.
+
+    The macro reviewer's demand-elasticity concern was raised independently
+    in the debate (Bear turn 6) and addressed by the Bull's multiple-compression
+    kill switch (turn 7). Disclosure of the macro-path dependency is added to
+    the body §Catalyst path.
+
+  additional_requirements_on_paper:
+    - "Present off-price recognition as a range ($42M peer-analog low, $110M central) in body §What we think is true"
+    - "Distinguish demand-shortfall vs. aggressive-sell-in interpretations of inventory bloat in appendix"
+    - "Disclose macro-path dependency in body §Catalyst path (paragraph)"
+    - "Add brand-vs-category FY24 Q1 divergence to body §What we think is true (per Judge turn 7)"

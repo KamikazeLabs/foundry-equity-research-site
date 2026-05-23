@@ -1,0 +1,80 @@
+{
+  "paper_id": "FER-SYN-2026-Q2-GLTZ",
+  "extracted_at": "2026-05-23T20:00:00Z",
+  "nodes": [
+    {"id": "cite_inv_q1fy24", "kind": "citation", "label": "row_inventory_days_q1fy24 = 88", "source_section": "what-we-think-is-true"},
+    {"id": "cite_inv_q1fy26", "kind": "citation", "label": "row_inventory_days_q1fy26 = 142", "source_section": "what-we-think-is-true"},
+    {"id": "cite_sss_q3", "kind": "citation", "label": "row_sss_q3fy25 = -2.8%", "source_section": "what-we-think-is-true"},
+    {"id": "cite_sss_q4", "kind": "citation", "label": "row_sss_q4fy25 = -3.1%", "source_section": "what-we-think-is-true"},
+    {"id": "cite_sss_q1", "kind": "citation", "label": "row_sss_q1fy26 = -3.4%", "source_section": "what-we-think-is-true"},
+    {"id": "cite_demo_fy23", "kind": "citation", "label": "row_customer_demo_fy23 = 48% under-25", "source_section": "what-we-think-is-true"},
+    {"id": "cite_demo_fy26", "kind": "citation", "label": "row_customer_demo_fy26 = 32% under-25", "source_section": "what-we-think-is-true"},
+    {"id": "cite_offprice", "kind": "citation", "label": "row_offprice_disclosure = ~7% revenue", "source_section": "what-we-think-is-true"},
+    {"id": "cite_eps_fy25", "kind": "citation", "label": "row_eps_fy25_gaap = $2.78", "source_section": "thesis"},
+    {"id": "cite_eps_fy26e", "kind": "citation", "label": "row_eps_fy26e_consensus = $3.00", "source_section": "thesis"},
+    {"id": "cite_peer_mult", "kind": "citation", "label": "row_peer_multiples median 18x", "source_section": "thesis"},
+    {"id": "cite_peer_growth_match", "kind": "citation", "label": "row_peer_growth_match implied 17-19x", "source_section": "thesis"},
+    {"id": "cite_adv", "kind": "citation", "label": "row_adv = $86M/day", "source_section": "sizing-and-borrow"},
+    {"id": "cite_borrow", "kind": "citation", "label": "row_borrow = 8.3M shares", "source_section": "sizing-and-borrow"},
+    {"id": "cite_short_int", "kind": "citation", "label": "row_short_interest = 12%", "source_section": "risks-and-counters"},
+
+    {"id": "a_consensus_lag", "kind": "assumption", "label": "a_consensus_revisions_lag: ~2 quarters", "source_section": "thesis"},
+    {"id": "a_mult_compress", "kind": "assumption", "label": "a_multiple_compresses_to_peer_median: 28x -> 18x", "source_section": "thesis"},
+    {"id": "a_offprice_rec", "kind": "assumption", "label": "a_offprice_recognition: full wholesale recognition on off-price", "source_section": "what-we-think-is-true"},
+    {"id": "a_no_takeout", "kind": "assumption", "label": "a_no_takeout_squeeze: no PE bid >15% premium in 18 months", "source_section": "risks-and-counters"},
+
+    {"id": "claim_inventory_bloat", "kind": "claim", "label": "Inventory days expanded from 88 to 142 over 6 quarters (+61%)", "source_section": "what-we-think-is-true"},
+    {"id": "claim_sss_persistent_decline", "kind": "claim", "label": "SSS declining -3% for 3 consecutive quarters (not noise)", "source_section": "what-we-think-is-true"},
+    {"id": "claim_demo_shift", "kind": "claim", "label": "Under-25 cohort 48% -> 32% of revenue (16pp decline)", "source_section": "what-we-think-is-true"},
+    {"id": "claim_offprice_recognition", "kind": "claim", "label": "Off-price channel placement (~7% revenue) recognized at full wholesale", "source_section": "what-we-think-is-true"},
+    {"id": "claim_real_eps_below_consensus", "kind": "claim", "label": "True-accrual FY25 EPS ~$2.65 vs. reported $2.78 and consensus FY26E $3.00", "source_section": "thesis"},
+    {"id": "claim_multiple_unjustified", "kind": "claim", "label": "28x multiple is unjustified against peer median 18x at GLTZ's deteriorating profile", "source_section": "thesis"},
+    {"id": "claim_target_48", "kind": "claim", "label": "Target price $48 (16x $3.00 trailing FY26E EPS)", "source_section": "thesis"},
+    {"id": "claim_borrow_supports_size", "kind": "claim", "label": "Borrow availability supports the 1.0% position size with 95% headroom", "source_section": "sizing-and-borrow"},
+    {"id": "claim_kill_switch_complete", "kind": "claim", "label": "Kill switch covers all 4 load-bearing variables (inventory, SSS, multiple, off-price)", "source_section": "kill-switch"},
+
+    {"id": "conclusion", "kind": "conclusion", "label": "GLTZ short at $84 entry, target $48 over 18 months; gross return ~43%, net of borrow ~38%", "source_section": "thesis"}
+  ],
+  "edges": [
+    {"from": "cite_inv_q1fy24", "to": "claim_inventory_bloat"},
+    {"from": "cite_inv_q1fy26", "to": "claim_inventory_bloat"},
+    {"from": "cite_sss_q3", "to": "claim_sss_persistent_decline"},
+    {"from": "cite_sss_q4", "to": "claim_sss_persistent_decline"},
+    {"from": "cite_sss_q1", "to": "claim_sss_persistent_decline"},
+    {"from": "cite_demo_fy23", "to": "claim_demo_shift"},
+    {"from": "cite_demo_fy26", "to": "claim_demo_shift"},
+    {"from": "cite_offprice", "to": "claim_offprice_recognition"},
+    {"from": "a_offprice_rec", "to": "claim_offprice_recognition"},
+
+    {"from": "cite_eps_fy25", "to": "claim_real_eps_below_consensus"},
+    {"from": "claim_inventory_bloat", "to": "claim_real_eps_below_consensus"},
+    {"from": "claim_offprice_recognition", "to": "claim_real_eps_below_consensus"},
+    {"from": "claim_sss_persistent_decline", "to": "claim_real_eps_below_consensus"},
+
+    {"from": "cite_peer_mult", "to": "claim_multiple_unjustified"},
+    {"from": "cite_peer_growth_match", "to": "claim_multiple_unjustified"},
+    {"from": "claim_real_eps_below_consensus", "to": "claim_multiple_unjustified"},
+    {"from": "claim_sss_persistent_decline", "to": "claim_multiple_unjustified"},
+    {"from": "claim_demo_shift", "to": "claim_multiple_unjustified"},
+
+    {"from": "cite_eps_fy26e", "to": "claim_target_48"},
+    {"from": "claim_multiple_unjustified", "to": "claim_target_48"},
+    {"from": "a_mult_compress", "to": "claim_target_48"},
+    {"from": "a_consensus_lag", "to": "claim_target_48"},
+
+    {"from": "cite_adv", "to": "claim_borrow_supports_size"},
+    {"from": "cite_borrow", "to": "claim_borrow_supports_size"},
+    {"from": "cite_short_int", "to": "claim_borrow_supports_size"},
+
+    {"from": "claim_inventory_bloat", "to": "claim_kill_switch_complete"},
+    {"from": "claim_sss_persistent_decline", "to": "claim_kill_switch_complete"},
+    {"from": "claim_multiple_unjustified", "to": "claim_kill_switch_complete"},
+    {"from": "claim_offprice_recognition", "to": "claim_kill_switch_complete"},
+
+    {"from": "a_no_takeout", "to": "claim_target_48"},
+
+    {"from": "claim_target_48", "to": "conclusion", "weight": 0.9},
+    {"from": "claim_borrow_supports_size", "to": "conclusion", "weight": 0.7},
+    {"from": "claim_kill_switch_complete", "to": "conclusion", "weight": 0.8}
+  ]
+}

@@ -1,0 +1,59 @@
+name: Quality compounder
+slug: quality-compounder
+description: >
+  Long thesis on a high-ROIC business with durable competitive advantages
+  and a multi-year reinvestment runway. Default horizon 3 to 5 years.
+
+sections:
+  - one-page-summary
+  - business-overview
+  - economic-engine        # unit economics, ROIC drivers
+  - durability             # moat analysis, threats
+  - growth-runway          # TAM, reinvestment opportunities
+  - management-and-capital-allocation
+  - financial-model        # base / bull / bear
+  - valuation-and-entry    # entry rule, exit rule, kill switch
+  - risks-and-counters
+  - appendix
+
+page_budget: 40
+chart_budget: 12
+
+gates:
+  required:
+    - 01-number-tie
+    - 02-citation-resolver
+    - 03-date-consistency
+    - 04-ticker-validity
+    - 05-chart-render
+    - 06-font-embedding
+    - 07-brand-check
+    - 08-toc-parity
+    - 09-page-budget
+    - 10-disclaimer
+    - 11-spell-grammar
+    - 12-ai-concurrence
+    - 13-argument-graph
+    - 14-counter-thesis
+    - 15-base-rate
+    - 16-reflexivity
+    - 18-disclosure-footprint
+    - 19-audit-trail
+    - 20-constitution
+  optional:
+    - 17-liquidity          # only if implied size > capacity threshold
+
+reviewer_panel:
+  - reviewer-forensics
+  - reviewer-industry
+  - reviewer-macro
+
+debate:
+  enabled: true
+  turns: 6
+
+counter_construction:
+  enabled: true
+  focus: >
+    Find a documented precedent where a similar 'durable' moat eroded
+    faster than expected, and the equivalent thesis lost money.

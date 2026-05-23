@@ -23,7 +23,25 @@ The three reviewers (`forensics`, `industry`, `macro`) must:
 
 1. Run with **different system prompts** (the rubric files in each agent dir).
 2. Have **no shared context** during their pass — each receives the paper and metadata independently, no awareness of the other reviewers' outputs.
-3. **Model-class diversity** where feasible: at least one of the three runs on a different model family than the other two.
+3. **Model-family diversity:** at least two distinct model families must be represented across the three reviewers.
+
+### Definition: "model family"
+
+A *model family* is a published base-model lineage. Examples:
+
+- `Claude 4.X` (Opus 4.7, Sonnet 4.6, Haiku 4.5 are all the same family)
+- `GPT-5.X`
+- `Gemini 3.X`
+
+Different sizes within a family are the *same* family. Different fine-tunes of the same base are the *same* family. Disjoint priors requires genuinely different families, not different temperatures or system prompts within one family.
+
+Acceptable configurations (any one):
+
+- Forensics on Claude family, Industry on GPT family, Macro on Claude family
+- Forensics on GPT, Industry on Claude, Macro on Gemini
+- Forensics on Claude Opus 4.7, Industry on GPT-5, Macro on Claude Haiku 4.5
+
+Unacceptable: all three reviewers on the same family, even with different sizes and prompts. The constitution gate (20) fails the panel composition in that case.
 
 The same independence rules apply to debate roles: `debate-bull` and `debate-bear` do not see each other's planning notes, only their statements during the debate.
 

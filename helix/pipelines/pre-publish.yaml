@@ -29,19 +29,7 @@ stages:
       - 19-audit-trail          # deterministic
     on_fail: hold_paper
 
-  # argument graph extraction + check
-  - id: argument-graph
-    sequential:
-      - run: argument-graph-extractor
-        outputs: [graph.json]
-      - run: quant-reviewer-approval
-        inputs: [graph.json]
-        on_reject: rebuild_graph_then_retry
-      - gate: 13-argument-graph
-        inputs: [graph.json]
-    on_fail: hold_paper
-
-  # reasoning gates that depend on the graph
+  # reasoning gates that do not need the argument graph
   - id: reasoning-gates
     parallel: true
     gates:
@@ -83,6 +71,21 @@ stages:
   - id: counter-thesis-gate
     gate: 14-counter-thesis
     inputs: [counter_attempt.md, paper.md]
+
+  # argument graph extraction + check (runs AFTER the adversarial block so the
+  # extractor can incorporate claims from debate_transcript.md and
+  # counter_attempt.md, per A.1)
+  - id: argument-graph
+    sequential:
+      - run: argument-graph-extractor
+        inputs: [paper.md, appendix.md, debate_transcript.md, counter_attempt.md]
+        outputs: [graph.json]
+      - run: quant-reviewer-approval
+        inputs: [graph.json]
+        on_reject: rebuild_graph_then_retry
+      - gate: 13-argument-graph
+        inputs: [graph.json]
+    on_fail: hold_paper
 
   - id: ai-concurrence-legacy
     gate: 12-ai-concurrence       # transitional; replaced by the panel + debate over time

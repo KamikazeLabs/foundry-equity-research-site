@@ -30,6 +30,7 @@ strongest_counter:
 all_attempts:
   - description: "..."
     evidence_class: "..."
+    provenance: fresh | ledger | delegated     # see provenance rules
     result: failed_to_produce | weak | strong
 search_space_covered: |
   Plain-language description of what was searched and what was not.
@@ -50,8 +51,9 @@ Process:
 1. Restate the paper's central thesis in one sentence with explicit claims
    (subject, mechanism, magnitude, time horizon).
 
-2. Generate at minimum five candidate counter-constructions before
-   evaluating any. Each is a specific public dataset, comparable position
+2. Generate at minimum five candidate counter-constructions of provenance
+   `fresh` or `ledger` (delegated passthroughs from reviewers do NOT count
+   toward this minimum). Each is a specific public dataset, comparable position
    from the Helix ledger, regulatory filing, or precedent that would, if
    true, invalidate the thesis. Examples of what counts as a counter:
    - A precedent: "5 years ago, issuer Y in the same industry made the
@@ -88,6 +90,16 @@ the paper trivially addresses is fine — the institutional reader's
 confidence in the desk depends on seeing the attempt, not on the attempt
 succeeding.
 ```
+
+## Provenance rules
+
+Every candidate in `all_attempts` declares its provenance:
+
+- `fresh` — discovered by the counter-construction agent itself through its own retrieval.
+- `ledger` — surfaced by `ledger-query` and adopted by the counter-construction agent.
+- `delegated` — passed through from a reviewer's finding (forensics, industry, or macro). These are tracked for completeness but **do not count toward the minimum-5 candidate requirement**.
+
+This prevents the minimum-5 from being gamed by counting reviewer-surfaced concerns the counter-construction agent did not independently find.
 
 ## Evaluation rubric
 

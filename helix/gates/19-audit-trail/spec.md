@@ -75,4 +75,21 @@ fig_4_eps_normalized:
       args: { by: row_share_count_diluted }
 ```
 
-The DSL is intentionally constrained so the gate can re-execute every transformation deterministically. New ops require a desk-lead approval and addition to the DSL spec.
+### Supported ops
+
+| op | semantics | required args |
+|----|-----------|---------------|
+| `identity` | passthrough | (none — single `source`) |
+| `sum` | sum of inputs | `inputs: [row_id, ...]` |
+| `subtract` | `from - value` | `from`, `value` |
+| `multiply` | `value * factor` | `value`, `factor` |
+| `divide` | `numerator / denominator` | `numerator`, `denominator` |
+| `growth_rate` | `(current - prior) / prior` | `current`, `prior` |
+| `cagr` | `(end/start)^(1/years) - 1` | `start`, `end`, `years` |
+| `weighted_avg` | weighted average | `values: [row_id, ...]`, `weights: [...]` |
+| `irr_simple` | geometric return, no intermediate cash flows | `start_price`, `end_price`, `years` |
+| `irr` | IRR over an explicit cash flow schedule | `cashflows: [(t, amount), ...]` |
+| `npv` | net present value | `cashflows`, `discount_rate` |
+| `multiple_apply` | `value * multiple` (e.g., EPS × P/E) | `value`, `multiple` |
+
+The DSL is intentionally constrained so the gate can re-execute every transformation deterministically. New ops require a desk-lead approval and an addition to this table.

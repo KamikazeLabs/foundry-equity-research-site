@@ -26,7 +26,7 @@ The gate fails on any provision marked `non-compliant`.
 | I.2 | Errata as new versions | If errata, original version still resolves |
 | II.3 | Named source for every quantitative cell | Gate 1 + 2 must have passed |
 | II.4 | Figure ties to (source, transformation, timestamp) | Gate 19 must have passed |
-| II.5 | Forecast kill switch is quantitative | Classifier on `kill-switch` section: returns `quantitative_present` |
+| II.5 | Kill switch is quantitative AND covers all load-bearing variables | Classifier on `kill-switch` section returns `quantitative_present`; AND deterministic check: for every node `n` with at least one inbound edge to the conclusion carrying weight ≥ 0.7, the kill-switch section explicitly references `n`'s underlying variable |
 | III.6 | Paper is an argument graph; no orphans | Gate 13 must have passed |
 | III.7 | Counter-construction attempted and published | Gate 14 must have passed; appendix contains transcript |
 | III.8 | Reviewer disagreement is published | Appendix contains a disagreement matrix from the three reviewers |

@@ -12,6 +12,13 @@ published_at: "2026-04-08T14:00:00Z"
 shape: "quality-compounder"
 constitution_sha: "..."
 
+milestones_enabled:        # per A.8 — distinguishes disabled from failed
+  M0: true                  # constitution + shapes
+  M1: true                  # argument graph + reviewer panel
+  M2: true                  # debate + counter-construction + gates 14-19
+  M3: false                 # FunSearch + PRM (planned)
+  M4: true                  # constitution gate + ledger-query
+
 gate_results:
   01-number-tie: {passed: true, duration_ms: 4200, findings: 0}
   02-citation-resolver: {passed: true, ...}

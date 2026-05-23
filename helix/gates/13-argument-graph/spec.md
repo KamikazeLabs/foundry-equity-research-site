@@ -21,12 +21,18 @@ The extracted argument graph satisfies all of:
 6. **Justified claims.** Every node with `kind in {claim, conclusion}` has at least one inbound edge.
 7. **Valid leaves.** Every node with zero inbound edges has `kind in {citation, assumption}`.
 8. **All nodes support the conclusion.** Every node is reachable backwards from the conclusion (no orphans, no parallel arguments that go nowhere).
+9. **Weight validity.** Where `weight` is present on an edge, it is a number in `[0.0, 1.0]`. Weight is **required** on edges to the conclusion; optional elsewhere.
+10. **Load-bearing multi-sourcing.** For every edge to the conclusion with weight ≥ 0.7 ("load-bearing"), the source node must have ≥ 2 inbound edges (i.e., the load-bearing claim is not single-sourced). The threshold is configurable via the module constant `LOAD_BEARING_THRESHOLD` in `check.py`.
 
 ## Inputs
 
 - `paper.md` — the draft paper
 - `appendix.md` — citations and assumptions
+- `debate_transcript.md` — every Bull/Bear turn (extractor must cover claims made here, not just the body)
+- `counter_attempt.md` — the counter-construction artifact (claims the paper addresses become nodes)
 - `graph.json` — produced by the extractor (see `extractor_prompt.md`); subject to quant-reviewer approval
+
+The extractor runs **after** the debate and counter-construction so all four documents are available. Gate 13 therefore runs after the adversarial block in the pre-publish pipeline.
 
 ## Outputs
 
@@ -34,7 +40,7 @@ The extracted argument graph satisfies all of:
 passed: true | false
 findings:
   - severity: error | warn
-    code: ORPHAN | CYCLE | UNJUSTIFIED | NO_CONCLUSION | MULTI_CONCLUSION | BAD_KIND | BAD_EDGE | DUP_ID | UNREACHABLE
+    code: ORPHAN | CYCLE | UNJUSTIFIED | NO_CONCLUSION | MULTI_CONCLUSION | BAD_KIND | BAD_EDGE | DUP_ID | UNREACHABLE | BAD_WEIGHT | MISSING_CONCLUSION_WEIGHT | SINGLE_SOURCED_LOAD_BEARING
     message: "..."
     node: "claim2"
 evidence:

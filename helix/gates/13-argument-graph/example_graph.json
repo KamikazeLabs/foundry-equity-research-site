@@ -25,7 +25,7 @@
     {"from": "claim_high_roic", "to": "claim_value_creation"},
     {"from": "claim_reinvest_runway", "to": "claim_value_creation"},
     {"from": "assume_margin", "to": "claim_value_creation"},
-    {"from": "assume_no_disruption", "to": "conclusion"},
-    {"from": "claim_value_creation", "to": "conclusion"}
+    {"from": "assume_no_disruption", "to": "claim_value_creation"},
+    {"from": "claim_value_creation", "to": "conclusion", "weight": 1.0}
   ]
 }

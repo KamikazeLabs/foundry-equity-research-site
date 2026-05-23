@@ -66,7 +66,7 @@
     {"from": "claim_top_decile_roic", "to": "claim_rerate_22x"},
     {"from": "claim_moat_intact", "to": "claim_rerate_22x"},
 
-    {"from": "claim_rerate_22x", "to": "conclusion"},
-    {"from": "claim_fy28_eps_565", "to": "conclusion"}
+    {"from": "claim_rerate_22x", "to": "conclusion", "weight": 0.8},
+    {"from": "claim_fy28_eps_565", "to": "conclusion", "weight": 0.9}
   ]
 }

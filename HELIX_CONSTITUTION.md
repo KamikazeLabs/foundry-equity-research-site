@@ -18,7 +18,7 @@ This is the live constitution governing every paper Helix Site Forge produces. I
 
 3. No quantitative cell ships without a named source row in the appendix.
 4. Every figure ties to `(source, transformation, timestamp)`. Unanchored figures do not ship.
-5. Every forecast discloses its kill switch — a quantitative condition that, if met, invalidates the thesis.
+5. Every forecast discloses its kill switch — a quantitative condition that, if met, invalidates the thesis. The kill switch must cover every load-bearing variable identified in the argument graph (any node whose inbound edge to the conclusion carries weight ≥ 0.7).
 
 ## III. Reasoning
 

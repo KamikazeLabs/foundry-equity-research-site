@@ -1,0 +1,124 @@
+paper_id: FER-SYN-2026-Q2-ACME
+
+verdict: bear
+margin: 0.58
+# margin > 0.5 = decisive bear; 0.45-0.55 = inconclusive; > 0.7 = strong
+
+per_turn:
+  - turn: 1
+    side: bull
+    factual_grounding: 4   # cited 5 appendix rows; 88-92% conversion claim not in appendix (deducted)
+    responsiveness: 5      # opens cleanly; not a response yet
+    logical_strength: 4    # solid structural argument
+    cited_external: false
+    citation_verified: true
+    notes: "Strong opening. 88-92% conversion-in-automation figure should be added to appendix as a source row if the Bull stands behind it."
+
+  - turn: 2
+    side: bear
+    factual_grounding: 5   # 3 external filings cited, all verified by Judge; ledger position cited
+    responsiveness: 5      # directly targets Bull's 80% claim
+    logical_strength: 5    # precedent set + structural analog from ledger
+    cited_external: true
+    citation_verified: true   # PRECISN, HORTON, ATLAS-PE filings checked
+    notes: "Highest-scoring Bear turn. Precedent attack landed."
+
+  - turn: 3
+    side: bull
+    factual_grounding: 3   # concedes precedent set but pivots without new sources
+    responsiveness: 4      # engages directly but partially concedes
+    logical_strength: 3    # platform-density argument is plausible but unsourced
+    cited_external: false
+    citation_verified: true
+    notes: "Concession was honest but reveals the original 80% factor was not well-supported."
+
+  - turn: 4
+    side: bear
+    factual_grounding: 4   # multiple precedent argument cites comparable peer multiples
+    responsiveness: 5      # capitalizes on the concession, pivots to multiple
+    logical_strength: 4
+    cited_external: true
+    citation_verified: true
+    notes: "Bear shifts attack vector once original target is conceded; effective."
+
+  - turn: 5
+    side: bull
+    factual_grounding: 3   # DCF / ROIC-to-multiple math is plausible but the 0.6x factor is unsourced
+    responsiveness: 4
+    logical_strength: 3
+    cited_external: false
+    citation_verified: true
+    notes: "Defending a position the Bull is no longer fully committed to; IRR now 9.5%."
+
+  - turn: 6
+    side: bear
+    factual_grounding: 5   # closes by tallying revisions, all of which are in the transcript
+    responsiveness: 5
+    logical_strength: 5
+    cited_external: false
+    citation_verified: true
+    notes: "Closing argument summarizes the structural shift in the Bull's position during the debate."
+
+scores:
+  bull_total: {factual: 10, responsive: 13, logical: 10, total: 33}
+  bear_total: {factual: 14, responsive: 15, logical: 14, total: 43}
+  margin: 0.58
+
+key_findings:
+  - "Bull's load-bearing 80% conversion factor moved to 75% under Bear's precedent attack; the original was not well-sourced."
+  - "Bull's 22x multiple is the peak peer multiple, not the median. Under Bear's pressure Bull revised to 20x, which is still above the 19x peer median for similar growth profiles."
+  - "Bull's revised IRR (9.5%) is below the desk's 10% threshold. Bull acknowledged but did not concede the implication."
+  - "Counter-construction (separate artifact) flagged the conversion-rate precedent independently; debate corroborated."
+  - "Bear's 4.3% customer-concentration counter from the appendix is unaddressed by the paper as drafted."
+
+constitutional_check:
+  passed: false
+  provisions_invoked:
+    - "§II.3 - 88-92% conversion claim in Bull's turn 1 is not in appendix"
+    - "§II.5 - kill switch is quantitative but only on EV revenue and GM; does not cover multiple compression"
+    - "§III.6 - argument graph extracted but the 'multiple-rerating' node (claim_rerate_22x) has only weak inbound justification (top_decile_roic + moat_intact); does not include the explicit peer-multiple analog the Bull eventually argued"
+  notes: |
+    Two distinct constitutional issues. (a) An asserted fact (88-92% conversion)
+    is not in the appendix - violates §II.3 and would have been caught by gate 13
+    if the extractor had created a node for it. The extractor missed it because
+    the figure is in the Bull's debate, not the paper body. (b) The kill switch
+    does not cover the multiple-compression risk that the Bear surfaced.
+
+rationale: |
+  Bear wins decisively. The paper as drafted does not ship.
+
+  The substantive issue is that during the debate, Bull was forced to revise
+  the central thesis twice: FY28 EPS from $5.65 to $5.50, exit multiple from
+  22x to 20x, position size from 1.5% to 1.0%, entry rule from $84 to $78.
+  The revised thesis sits below the desk's 10% IRR threshold (9.5%). A paper
+  that survives only by being revised mid-debate to a position the analyst
+  did not originally publish is not a paper that has cleared the gate.
+
+  The procedural issue is constitutional. Section II.3 requires every
+  quantitative claim to be backed by a named source row. The 88-92%
+  conversion-rate figure cited by the Bull is not in the appendix. The
+  multiple-compression risk that the Bear surfaced is not covered by the
+  paper's kill switch (only EV revenue and GM are).
+
+  The counter-construction agent (run in parallel) flagged the conversion-rate
+  precedent independently. Two independent attack vectors converging on the
+  same node is a strong signal.
+
+  Recommendation: the paper does not ship. It is rewritten with: (a) the
+  conversion-rate sensitivity table, (b) a multiple anchored to peer median
+  with explicit justification for any premium, (c) a kill switch extended
+  to multiple compression, and (d) the missing source row for the
+  industrial-automation conversion rate. If the rewritten paper's IRR is
+  below 10% at conservative inputs, it does not ship at all.
+
+publication_recommendation:
+  ship: false
+  reason: "Thesis revisions during debate place IRR below desk threshold; constitutional violations on §II.3, §II.5, §III.6"
+  required_before_resubmission:
+    - "Add appendix row for industrial-automation conversion rate (88-92%)"
+    - "Add conversion-rate sensitivity table to body and appendix"
+    - "Anchor target multiple to peer median (19x) with explicit justification for any premium"
+    - "Extend kill switch to include multiple compression below 17x"
+    - "Re-run the pipeline; if IRR < 10% at conservative inputs, do not ship"
+
+constitution_version_sha: "(populated at runtime)"

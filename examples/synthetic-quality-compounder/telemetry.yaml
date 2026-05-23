@@ -1,0 +1,80 @@
+paper_id: FER-SYN-2026-Q2-ACME
+status: HELD                    # debate Judge ruled bear; paper did not ship as drafted
+
+generated_at: 2026-05-23T20:00:00Z
+shape: quality-compounder
+constitution_sha: "(populated at runtime)"
+
+gate_results:
+  01-number-tie:           {passed: true,  duration_ms: 4200, findings: 0}
+  02-citation-resolver:    {passed: true,  duration_ms: 5800, findings: 0}
+  03-date-consistency:     {passed: true,  duration_ms: 1300, findings: 0}
+  04-ticker-validity:      {passed: true,  duration_ms: 220,  findings: 0}
+  05-chart-render:         {passed: true,  duration_ms: 8400, findings: 0}
+  06-font-embedding:       {passed: true,  duration_ms: 950,  findings: 0}
+  07-brand-check:          {passed: true,  duration_ms: 1100, findings: 0}
+  08-toc-parity:           {passed: true,  duration_ms: 700,  findings: 0}
+  09-page-budget:          {passed: true,  duration_ms: 150,  findings: 0}
+  10-disclaimer:           {passed: true,  duration_ms: 80,   findings: 0}
+  11-spell-grammar:        {passed: true,  duration_ms: 3100, findings: 0}
+  12-ai-concurrence:       {passed: false, duration_ms: 12000, findings: 1, note: "replaced by debate; legacy gate retained transitionally and flagged"}
+  13-argument-graph:       {passed: true,  duration_ms: 240,  findings: 0, min_path_length_to_conclusion: 2, max_path_length_to_conclusion: 4}
+  14-counter-thesis:       {passed: true,  duration_ms: 180,  findings: 0, recommendation: "ship_with_appendix", strongest_counter_strength: "strong"}
+  15-base-rate:            {passed: true,  duration_ms: 2400, findings: 0}
+  16-reflexivity:          {passed: true,  duration_ms: 1800, findings: 0}
+  17-liquidity:            {passed: true,  duration_ms: 320,  findings: 0}
+  18-disclosure-footprint: {passed: true,  duration_ms: 1500, findings: 0}
+  19-audit-trail:          {passed: true,  duration_ms: 2200, findings: 0}
+  20-constitution:         {passed: false, duration_ms: 4500, findings: 3, provisions_invoked: ["§II.3", "§II.5", "§III.6"]}
+
+argument_graph:
+  node_count: 30
+  edge_count: 31
+  citation_count: 13
+  assumption_count: 5
+  claim_count: 11
+  conclusion_count: 1
+  min_path_length_to_conclusion: 2
+  max_path_length_to_conclusion: 4
+
+reviewer_panel:
+  forensics:  {verdict: "pass",     confidence: 0.86, findings: 1, model_family: "A"}
+  industry:   {verdict: "pass",     confidence: 0.78, findings: 1, model_family: "B"}
+  macro:      {verdict: "concerns", confidence: 0.71, findings: 1, model_family: "A"}
+  disagreement_pairs: 1
+  disjoint_priors_satisfied: true
+
+debate:
+  turns: 6
+  bull_score: {factual: 10, responsive: 13, logical: 10, total: 33}
+  bear_score: {factual: 14, responsive: 15, logical: 14, total: 43}
+  external_citations_by_bear: 3
+  external_citations_verified: 3
+  judge_verdict: "bear"
+  judge_margin: 0.58
+
+counter_construction:
+  candidates_generated: 6
+  strongest_counter_strength: "strong"
+  recommendation: "ship_with_appendix"
+  search_space_summary: "5-yr precedent set + competing TAM forecasts + customer 10-Ks + ledger + industrial M&A studies"
+
+funsearch:
+  enabled: false             # this paper was analyst-originated, not FunSearch
+  cycles: null
+  candidates_evaluated: null
+  selected_was_top_T: null
+  selected_was_analyst_first_instinct: true
+
+prm:
+  enabled: false             # M3 not yet shipped
+  min_edge_score: null
+  edges_below_threshold: null
+
+desk_lead_signoff:
+  mechanical: false
+  outcome: HELD
+  reason: "Judge ruled bear; constitution gate failed on three provisions. Paper requires rewrite."
+  rewrite_requirements: [see judge_verdict.yaml.publication_recommendation.required_before_resubmission]
+
+publish_outputs: null         # paper did not ship

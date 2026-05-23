@@ -1,0 +1,116 @@
+paper_id: FER-SYN-2026-Q2-PRSM
+
+verdict: bull
+margin: 0.65
+
+per_turn:
+  - turn: 1
+    side: bull
+    factual_grounding: 5
+    responsiveness: 5      # opener; full mark for setup quality
+    logical_strength: 4
+    cited_external: false
+    citation_verified: true
+    notes: "Opens cleanly with three appendix-anchored numbers; kill-switch coverage of all load-bearing variables is mentioned upfront."
+
+  - turn: 2
+    side: bear
+    factual_grounding: 4
+    responsiveness: 5
+    logical_strength: 4
+    cited_external: false
+    citation_verified: true
+    notes: "Strong attack on the GM accounting interpretation; forces Bull to show the mix math."
+
+  - turn: 3
+    side: bull
+    factual_grounding: 5
+    responsiveness: 5
+    logical_strength: 5
+    cited_external: false
+    citation_verified: true
+    notes: "Decisive response. The mix math reconciles to within 50bp of the paper. Adds transparency footnote."
+
+  - turn: 4
+    side: bear
+    factual_grounding: 5      # 4 explicit launch precedents named
+    responsiveness: 4
+    logical_strength: 4
+    cited_external: true
+    citation_verified: true    # 4 precedent launches all verified
+    notes: "Pivot to multiple-timing attack; precedent set is robust."
+
+  - turn: 5
+    side: bull
+    factual_grounding: 4       # peer-relative performance claim could use a source row
+    responsiveness: 5
+    logical_strength: 4
+    cited_external: false
+    citation_verified: true
+    notes: "Reframes the question productively. Bull-vs-bear scenario is well-articulated."
+
+  - turn: 6
+    side: bear
+    factual_grounding: 4
+    responsiveness: 5
+    logical_strength: 4
+    cited_external: false
+    citation_verified: true
+    notes: "Closes by conceding. Honest debate."
+
+scores:
+  bull_total: {factual: 14, responsive: 15, logical: 13, total: 42}
+  bear_total: {factual: 13, responsive: 14, logical: 12, total: 39}
+  margin: 0.65
+
+key_findings:
+  - "Bull's mix-math defense (turn 3) reconciled the FY28 GM cleanly with the segment-level inputs. The Bear's GM-attack landed on a real ambiguity but did not invalidate the thesis."
+  - "Bear surfaced multiple-timing as the residual risk: the premium materializes at launch (Q3 FY26), not immediately. This is a position-timing concern, not a thesis defect."
+  - "Bull added a transparency footnote during debate (instrument GM held flat through FY28). The footnote is now required as a published appendix item."
+  - "All four load-bearing kill-switch variables (consumables-per-platform, installed-base growth, GM contraction, multiple compression) are explicitly covered. Constitution Sec II.5 (per A.2 fix) is satisfied."
+  - "Counter-construction's strongest_counter (consumables deceleration) was independently corroborated by being already baked into the paper's base case."
+
+constitutional_check:
+  passed: true
+  provisions_invoked:
+    - "Sec II.3 - all quantitative claims in debate trace to appendix rows (extractor verified post-debate per A.1 fix)"
+    - "Sec II.5 - kill switch covers all four load-bearing variables (per A.2 fix)"
+    - "Sec III.6 - argument graph passes gate 13 with conclusion-edge weights"
+    - "Sec III.7 - counter-construction was attempted and published"
+    - "Sec III.8 - disagreement matrix is published with the paper"
+  notes: |
+    Clean constitutional pass. Bull added one item during debate (the
+    instrument-GM transparency footnote) which is now required in the
+    published appendix. Bear's residual concern (multiple-timing) is
+    disclosed in the appendix as a position-timing risk.
+
+rationale: |
+  Bull wins. The paper ships.
+
+  The substantive case: Bull defended every load-bearing claim under
+  direct attack. The Bear's GM-accounting attack landed on a real ambiguity
+  (segment vs. corporate margin) but Bull's mix-math reconciliation closed
+  it with margin to spare. The Bear's multiple-precedent attack was
+  factually correct but the Bull repositioned the target within the
+  historical at-launch band, making the dispute about *when* the premium
+  realizes, not whether it does.
+
+  The procedural case: the debate produced two outputs the published paper
+  must absorb. (1) An instrument-GM transparency footnote (committed by
+  Bull in turn 3). (2) A multiple-timing risk disclosure (Bear's residual
+  concern in turn 6). Both are appendix items, not body rewrites. Constitution
+  gate (20) passes.
+
+  Independent cross-check: the counter-construction agent's strongest counter
+  (consumables-deceleration) was already incorporated into the paper before
+  the debate began. Convergence across the two adversarial processes —
+  counter-construction and debate — strengthens the thesis rather than
+  weakening it.
+
+publication_recommendation:
+  ship: true
+  with_caveats:
+    - "Add appendix entry: instrument GM held flat at 28% through FY28; any expansion is unmodeled upside"
+    - "Add appendix entry: multiple expansion premium may realize closer to Quantum-2 launch (Q3 FY26) than immediately; IRR profile is back-loaded"
+
+constitution_version_sha: "(populated at runtime)"

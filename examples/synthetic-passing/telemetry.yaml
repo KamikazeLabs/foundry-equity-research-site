@@ -1,0 +1,99 @@
+paper_id: FER-SYN-2026-Q2-PRSM
+status: SHIPPED
+
+generated_at: 2026-05-23T20:00:00Z
+shape: quality-compounder
+constitution_sha: "(populated at runtime)"
+
+milestones_enabled:
+  M0: true
+  M1: true
+  M2: true
+  M3: false
+  M4: true
+
+gate_results:
+  01-number-tie:           {passed: true,  duration_ms: 4100, findings: 0}
+  02-citation-resolver:    {passed: true,  duration_ms: 5400, findings: 0}
+  03-date-consistency:     {passed: true,  duration_ms: 1200, findings: 0}
+  04-ticker-validity:      {passed: true,  duration_ms: 210,  findings: 0}
+  05-chart-render:         {passed: true,  duration_ms: 8100, findings: 0}
+  06-font-embedding:       {passed: true,  duration_ms: 940,  findings: 0}
+  07-brand-check:          {passed: true,  duration_ms: 1050, findings: 0}
+  08-toc-parity:           {passed: true,  duration_ms: 690,  findings: 0}
+  09-page-budget:          {passed: true,  duration_ms: 140,  findings: 0}
+  10-disclaimer:           {passed: true,  duration_ms: 80,   findings: 0}
+  11-spell-grammar:        {passed: true,  duration_ms: 2900, findings: 0}
+  12-ai-concurrence:       {passed: true,  duration_ms: 11500, findings: 0, note: "legacy gate; retained transitionally"}
+  13-argument-graph:       {passed: true,  duration_ms: 235,  findings: 0, min_path_length_to_conclusion: 2, max_path_length_to_conclusion: 4, conclusion_edges_load_bearing: 2, conclusion_edges_total: 2}
+  14-counter-thesis:       {passed: true,  duration_ms: 180,  findings: 0, recommendation: "ship_with_appendix", strongest_counter_strength: "partial"}
+  15-base-rate:            {passed: true,  duration_ms: 2300, findings: 0}
+  16-reflexivity:          {passed: true,  duration_ms: 1700, findings: 0}
+  17-liquidity:            {passed: true,  duration_ms: 310,  findings: 0}
+  18-disclosure-footprint: {passed: true,  duration_ms: 1450, findings: 0}
+  19-audit-trail:          {passed: true,  duration_ms: 2150, findings: 0}
+  20-constitution:         {passed: true,  duration_ms: 4300, findings: 0, provisions_invoked: ["Sec II.3", "Sec II.5", "Sec III.6", "Sec III.7", "Sec III.8"]}
+
+argument_graph:
+  node_count: 29
+  edge_count: 33
+  citation_count: 16
+  assumption_count: 4
+  claim_count: 8
+  conclusion_count: 1
+  min_path_length_to_conclusion: 2
+  max_path_length_to_conclusion: 4
+  conclusion_edges_load_bearing: 2
+  conclusion_edges_total: 2
+
+reviewer_panel:
+  forensics:  {verdict: "pass",     confidence: 0.89, findings: 0, model_family: "Claude 4.X"}
+  industry:   {verdict: "concerns", confidence: 0.74, findings: 1, model_family: "GPT-5.X"}
+  macro:      {verdict: "concerns", confidence: 0.71, findings: 1, model_family: "Claude 4.X"}
+  disagreement_pairs: 0
+  disjoint_priors_satisfied: true
+  distinct_families_count: 2
+
+debate:
+  turns: 6
+  bull_score: {factual: 14, responsive: 15, logical: 13, total: 42}
+  bear_score: {factual: 13, responsive: 14, logical: 12, total: 39}
+  external_citations_by_bear: 4
+  external_citations_verified: 4
+  judge_verdict: "bull"
+  judge_margin: 0.65
+
+counter_construction:
+  candidates_generated: 6
+  fresh_count: 5
+  ledger_count: 1
+  delegated_count: 0
+  strongest_counter_strength: "partial"
+  recommendation: "ship_with_appendix"
+  search_space_summary: "PRSM 10-K/Q/8-K, Form 4 insider, CMS reimbursement schedules, customer 10-Ks for displacement, peer-group multiple history, Helix ledger, generation-over-generation consumables trajectory"
+
+funsearch:
+  enabled: false             # analyst-originated thesis
+  selected_was_analyst_first_instinct: true
+
+prm:
+  enabled: false             # M3 not yet shipped
+  min_edge_score: null
+  edges_below_threshold: null
+
+desk_lead_signoff:
+  mechanical: true
+  outcome: SHIPPED
+  signoff_at: 2026-05-23T20:30:00Z
+
+publish_outputs:
+  paper_pdf_sha: "(populated at runtime)"
+  appendix_disagreement_matrix_present: true
+  appendix_debate_transcript_present: true
+  appendix_counter_attempt_present: true
+  appendix_argument_graph_present: true
+  appendix_caveats:
+    - "Instrument GM held flat at 28% through FY28; any expansion is unmodeled upside"
+    - "Multiple expansion premium may realize closer to Quantum-2 launch (Q3 FY26) than immediately"
+    - "Top-10 concentration includes LabCorp at 4.6% (above earlier 4.5% framing)"
+    - "CMS molecular diagnostics reimbursement -8% cut effective 2026-Q3, ~$3M revenue / ~$0.02 EPS FY28 impact"

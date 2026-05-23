@@ -1,0 +1,69 @@
+# Audit-trail DSL — gate 19 input for FER-SYN-2026-Q2-PRSM
+# Uses the expanded DSL per spec A.3.
+
+fig_revenue_growth_fy24_fy25:
+  description: "Revenue growth FY24 -> FY25 (body: '9.9% organic')"
+  source: [row_revenue_fy25, row_revenue_fy24]
+  steps:
+    - op: growth_rate
+      args: {current: row_revenue_fy25, prior: row_revenue_fy24}
+  expected_value: 0.0995
+  tolerance_pct: 1.0
+
+fig_installed_base_growth:
+  description: "Installed base growth FY24 -> FY25 (body: '11.8%')"
+  source: [row_installed_base_fy25, row_installed_base_fy24]
+  steps:
+    - op: growth_rate
+      args: {current: row_installed_base_fy25, prior: row_installed_base_fy24}
+  expected_value: 0.1182
+  tolerance_pct: 1.0
+
+fig_consumables_per_platform:
+  description: "Consumables per platform FY25 (body: '$41.7K')"
+  source: [row_consumables_fy25, row_installed_base_fy25]
+  steps:
+    - op: divide
+      args: {numerator: row_consumables_fy25, denominator: row_installed_base_fy25}
+    - op: multiply
+      args: {value: __prev, factor: 1000.0}     # M$ / units -> $K per unit (rounded)
+  expected_value: 41.7
+  unit: "USDk"
+  tolerance_pct: 1.0
+
+fig_q2_incremental_revenue_mid:
+  description: "Quantum-2 incremental revenue midpoint ($115-155M -> $135M)"
+  source: []
+  steps:
+    - op: multiply
+      args: {value: 3500, factor: 38571.43}    # 3500 platforms * ~$38.6K/yr at ramp curve
+  expected_value: 135.0
+  unit: "USDmm"
+  tolerance_pct: 2.0
+  notes: >
+    Inputs are claims (a_q2_uptake_base, ramp-curve assumption), not source
+    rows. Gate 19 validates arithmetic; truthfulness of inputs is checked by
+    gates 13 and 15.
+
+fig_fy28_target_price:
+  description: "FY28 target price = base EPS * exit multiple"
+  source: []
+  steps:
+    - op: multiple_apply
+      args: {value: 5.65, multiple: 28.0}      # FY28 EPS * target multiple
+  expected_value: 158.20
+  unit: "USD/sh"
+  tolerance_pct: 0.5
+
+fig_irr_3yr:
+  description: "Base case 3-year IRR ($110 entry -> $158 target)"
+  source: []
+  steps:
+    - op: irr_simple
+      args: {start_price: 110.0, end_price: 158.20, years: 3}
+  expected_value: 0.1290
+  tolerance_pct: 1.0
+  notes: >
+    Geometric, no dividend. The body claim "IRR ~12.1%" uses a slightly
+    different start price ($112.40 current vs. $110 entry threshold);
+    at $112.40 -> $158.20 over 3yr, IRR = 12.1%.

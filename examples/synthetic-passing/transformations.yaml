@@ -36,14 +36,16 @@ fig_q2_incremental_revenue_mid:
   source: []
   steps:
     - op: multiply
-      args: {value: 3500, factor: 38571.43}    # 3500 platforms * ~$38.6K/yr at ramp curve
+      args: {value: 3500, factor: 38571.43}       # 3500 platforms * USD/platform = USD
+    - op: divide
+      args: {numerator: __prev, denominator: 1000000}    # convert USD -> USDmm
   expected_value: 135.0
   unit: "USDmm"
   tolerance_pct: 2.0
   notes: >
     Inputs are claims (a_q2_uptake_base, ramp-curve assumption), not source
     rows. Gate 19 validates arithmetic; truthfulness of inputs is checked by
-    gates 13 and 15.
+    gates 13 and 15. The two-step structure makes the unit conversion explicit.
 
 fig_fy28_target_price:
   description: "FY28 target price = base EPS * exit multiple"

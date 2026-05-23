@@ -27,7 +27,7 @@ PRSM sells molecular-diagnostics instruments (~22% of revenue) and the proprieta
 
 ## Economic engine
 
-ROIC averaged 25.3% over FY20–FY25 (`row_roic_5yr`), comfortably above the 21.0% top-decile peer threshold (`row_peer_roic`). The economic engine has three layers: (a) instrument placements at modest gross margin (28%) serve as customer acquisition; (b) consumables at 88% gross margin compound on the installed base; (c) menu expansion drives revenue per platform without requiring incremental placements. Per-platform consumables revenue has grown from $34K (FY20) to $42K (FY25), 4.3% CAGR, driven by 47 new assays approved across the period.
+ROIC averaged 25.3% over FY20–FY25 (`row_roic_5yr`), comfortably above the 21.0% top-decile peer threshold (`row_peer_roic`). The economic engine has three layers: (a) instrument placements at modest gross margin (28%) serve as customer acquisition; (b) consumables at 88% gross margin compound on the installed base; (c) menu expansion drives revenue per platform without requiring incremental placements. Per-platform consumables revenue has grown from $34K (FY20) to $42K (FY25), 4.3% CAGR, driven by 47 new assays approved across the period. Our model assumes this menu-expansion engine persists at ~3.5% per-platform CAGR through FY28 (`a_menu_expansion_persist`).
 
 ## Durability
 
@@ -35,7 +35,7 @@ Switching costs are material. Each platform must be re-validated by the customer
 
 ## Growth runway
 
-Quantum-2 is a smaller-footprint point-of-care platform launching Q3 FY26 at a $48K list price (~30% below the current flagship). It opens decentralized testing sites — outpatient surgery centers, urgent care, regional hospitals — that the current platform cannot economically serve. Management has guided 4,000 cumulative placements by FY28 (`row_q2_guidance`); we model 3,500 in our base case, 4,500 in bull. At the company's historical consumables ramp curve, that translates to incremental revenue of $115–155M by FY28.
+Quantum-2 is a smaller-footprint point-of-care platform launching Q3 FY26 at a $48K list price (~30% below the current flagship). It opens decentralized testing sites — outpatient surgery centers, urgent care, regional hospitals — that the current platform cannot economically serve. Management has guided 4,000 cumulative placements by FY28 (`row_q2_guidance`); we model 3,500 in our base case (`a_q2_uptake_base`), 4,500 in bull. At the company's historical consumables ramp curve, that translates to incremental revenue of $115–155M by FY28.
 
 ## Management and capital allocation
 
@@ -43,7 +43,7 @@ CEO has led PRSM since 2019. Capital allocation FY20–FY25: 58% R&D + capex (in
 
 ## Financial model
 
-Base case FY28: revenue $2.08B (CAGR 9.4% from FY25 $1.59B), consumables-to-instrument mix shifts further to 68/22/10, gross margin expands to 70.5% (vs FY25 68.9%) on consumables mix lift, operating margin 28.5%, EPS $5.65. Bull EPS $6.30; bear $4.85.
+Base case FY28: revenue $2.08B (CAGR 9.4% from FY25 $1.59B), consumables-to-instrument mix shifts further to 68/22/10, gross margin expands to 70.5% (vs FY25 68.9%) on consumables mix lift (`a_margin_durability` holds the corporate floor absent the Quantum-2 lift), operating margin 28.5%, EPS $5.65. Bull EPS $6.30; bear $4.85.
 
 ## Valuation and entry
 
@@ -56,6 +56,8 @@ Current: 19.9× FY26E EPS of $5.65 (sic — see appendix). Sector median for dia
 **R2.** Pricing pressure from payers compresses consumables margin. *Counter:* the kill switch on gross margin triggers at 250bp of contraction; FY28 EPS at the threshold is $5.40, target compresses to $151, IRR remains ~10%.
 
 **R3.** A major customer (hospital system) shifts to a competing platform. *Counter:* top-10 customer concentration is 22% (`row_top10`); no single customer over 4.5%. R3 is contained.
+
+**R4.** Payer reimbursement shock. *Counter:* the base model assumes no discrete payer shock (`a_no_payer_shock`); a >10% reimbursement cut affecting >10% of consumables revenue would invalidate the FY28 EPS line. CMS schedule monitoring is added to the desk's standing watch list.
 
 ## Reflexivity
 

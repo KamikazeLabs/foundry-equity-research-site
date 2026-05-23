@@ -15,50 +15,31 @@ on:
 
 jobs:
   gate-13-tests:
-    name: Gate 13 unit tests
+    name: Gate 13 (argument-graph) — unit tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Run argument-graph checker tests
-        run: python helix/gates/13-argument-graph/test_check.py
+      - run: python helix/gates/13-argument-graph/test_check.py
 
   gate-13-example-graphs:
-    name: Gate 13 verifies all example graphs
+    name: Gate 13 — verify all example graphs
     runs-on: ubuntu-latest
     needs: gate-13-tests
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Verify every committed argument_graph.json
         shell: bash
         run: |
           set -euo pipefail
           shopt -s nullglob
           failed=0
-          # the standalone example in the gate dir
-          for f in helix/gates/13-argument-graph/example_graph.json; do
-            echo "::group::Checking $f"
-            if python helix/gates/13-argument-graph/check.py "$f"; then
-              echo "ok"
-            else
-              echo "::error file=$f::gate 13 failed on $f"
-              failed=1
-            fi
-            echo "::endgroup::"
-          done
-          # every example bundle under examples/
-          for f in examples/*/argument_graph.json; do
+          for f in helix/gates/13-argument-graph/example_graph.json examples/*/argument_graph.json; do
             echo "::group::Checking $f"
             if python helix/gates/13-argument-graph/check.py "$f"; then
               echo "ok"
@@ -69,3 +50,37 @@ jobs:
             echo "::endgroup::"
           done
           exit $failed
+
+  gate-17-tests:
+    name: Gate 17 (liquidity) — unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python helix/gates/17-liquidity/test_check.py
+      - name: Run gate 17 on example_inputs.yaml
+        run: python helix/gates/17-liquidity/check.py helix/gates/17-liquidity/example_inputs.yaml
+
+  gate-18-tests:
+    name: Gate 18 (disclosure-footprint) — unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python helix/gates/18-disclosure-footprint/test_check.py
+
+  gate-19-tests:
+    name: Gate 19 (audit-trail DSL) — unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PyYAML
+        run: pip install pyyaml
+      - run: python helix/gates/19-audit-trail/test_check.py

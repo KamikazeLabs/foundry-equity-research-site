@@ -57,13 +57,14 @@ fig_net_short_return_18mo:
     holding period.
 
 fig_position_borrow_utilization:
-  description: "Position borrow utilization (body: '5.1% of available')"
+  description: "Position borrow utilization (body: '2.6% of available')"
   source: [row_borrow]
   steps:
     - op: divide
-      args: {numerator: 4.1, denominator: row_borrow}     # 4.1M / 8.3M (units: millions of shares)
-  expected_value: 0.0494
+      args: {numerator: 0.214, denominator: row_borrow}     # 214K / 8.3M (units: millions of shares)
+  expected_value: 0.0258
   tolerance_pct: 2.0
   notes: >
     Position size in shares is computed offline from desk-portfolio NAV
-    and entry price; we cite the resulting ratio.
+    and entry price ($18M / $84.20 ~= 214K shares); we cite the resulting
+    ratio.

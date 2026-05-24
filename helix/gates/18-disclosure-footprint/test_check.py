@@ -74,14 +74,29 @@ def test_no_assumptions_section():
     assert "NO_ASSUMPTIONS_SECTION" in _codes(check(paper, appendix))
 
 
-def test_real_example_synthetic_passing():
-    """End-to-end against the committed synthetic-passing example."""
+def _check_example(bundle: str) -> list:
     root = Path(__file__).resolve().parents[3]
-    paper = (root / "examples" / "synthetic-passing" / "paper.md").read_text()
-    appendix = (root / "examples" / "synthetic-passing" / "appendix.md").read_text()
-    findings = check(paper, appendix)
+    paper = (root / "examples" / bundle / "paper.md").read_text()
+    appendix = (root / "examples" / bundle / "appendix.md").read_text()
+    return check(paper, appendix)
+
+
+def test_real_example_synthetic_passing():
+    findings = _check_example("synthetic-passing")
     errors = [f for f in findings if f.severity == "error"]
     assert errors == [], "synthetic-passing should pass gate 18: " + "; ".join(f.format() for f in errors)
+
+
+def test_real_example_synthetic_quality_compounder():
+    findings = _check_example("synthetic-quality-compounder")
+    errors = [f for f in findings if f.severity == "error"]
+    assert errors == [], "synthetic-quality-compounder should pass gate 18: " + "; ".join(f.format() for f in errors)
+
+
+def test_real_example_synthetic_short():
+    findings = _check_example("synthetic-short")
+    errors = [f for f in findings if f.severity == "error"]
+    assert errors == [], "synthetic-short should pass gate 18: " + "; ".join(f.format() for f in errors)
 
 
 if __name__ == "__main__":

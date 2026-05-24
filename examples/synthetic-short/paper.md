@@ -19,11 +19,11 @@ GLTZ trades at 28× FY26E EPS ($84.20 / $3.00) versus a peer median of 18× for 
 - multiple compression stalls above 22× for two consecutive quarters
 - off-price channel disclosure changes such that the recognized revenue per unit at off-price equals or exceeds the per-unit recognition reduces below 50% of full-channel recognition
 
-**Horizon:** 18 months. **Expected return (base):** -43% on the stock, ~24% on the short position before borrow cost.
+**Horizon:** 18 months. **Expected return (base):** -43% on the stock; ~43% gross on the short position, ~38% net of borrow.
 
 ## Thesis
 
-The multiple anchors to a growth + margin profile that no longer exists. As consumer-facing metrics deteriorate visibly through FY26, consensus EPS revisions trail the print by ~2 quarters. Once consensus catches the actual run rate, the multiple compresses to peer median. Catalyst path is Q3 FY26 print (October) and Q4 FY26 holiday season (January 2027 print).
+The multiple anchors to a growth + margin profile that no longer exists. As consumer-facing metrics deteriorate visibly through FY26, consensus EPS revisions trail the print by ~2 quarters (`a_consensus_revisions_lag`). Once consensus catches the actual run rate, the multiple compresses to peer median (`a_multiple_compresses_to_peer_median`). Catalyst path is Q3 FY26 print (October) and Q4 FY26 holiday season (January 2027 print).
 
 ## What the market is pricing
 
@@ -31,7 +31,7 @@ A continuation of FY23–FY24 growth (~14% revenue, ~30% EPS) with margin expans
 
 ## What we think is true
 
-Same-store sales declining -3% (vs Street modeling +6%). Inventory days expanding 60% over six quarters indicating either demand shortfall or aggressive sell-in to channel. Customer demographic shift away from the core under-25 cohort. Reported revenue includes ~$110M of off-price channel placement recognized at full wholesale (~7% of FY25 revenue); on a true accrual basis, FY25 revenue is closer to $1.49B vs. reported $1.60B, and EPS is closer to $2.65 vs. reported $3.00.
+Same-store sales declining -3% (vs Street modeling +6%). Inventory days expanding 60% over six quarters indicating either demand shortfall or aggressive sell-in to channel. Customer demographic shift away from the core under-25 cohort. Reported revenue includes ~$110M of off-price channel placement recognized at full wholesale (`a_offprice_recognition`); on a true accrual basis, FY25 revenue is closer to $1.49B vs. reported $1.60B, and EPS is closer to $2.65 vs. reported $3.00.
 
 ## Catalyst path
 
@@ -39,7 +39,7 @@ Q3 FY26 print (3 Oct 2026): expected EPS revision -10% as inventory writedown be
 
 ## Sizing and borrow
 
-Position size 1.0% of model portfolio. ADV: $86M / day (`row_adv`). At 1.0% size, exit window 4 trading days at 25% participation. Borrow: 8.3M shares available (`row_borrow`), 12% utilization currently; position implies 4.1M shares short, 5.1% of available. Borrow rate: 3.2% annualized (`row_borrow_rate`). Net expected position return: ~24% over 18 months less ~4.8% borrow cost = ~19% net.
+Position size ~$18M at $1.8B model NAV (1.0% sizing). ADV: $86M / day (`row_adv`). Exit window 3.3 trading days at 25% participation. Borrow: 8.3M shares available (`row_borrow`), 12% utilization in the broader market (`row_short_interest`); position implies ~214K shares short, 2.6% of available borrow. Borrow rate: 3.2% annualized (`row_borrow_rate`). Net expected return on the position: ~43% gross over 18 months less ~4.8% borrow cost = ~38% net.
 
 ## Kill switch
 
@@ -49,7 +49,7 @@ See one-page summary. Four quantitative conditions, each on a load-bearing varia
 
 **R1.** Brand-driven re-acceleration (new product, viral marketing). *Counter:* the kill switch on same-store sales returning to ≥ +2% triggers exit. Recent peer reaccelerations from -3% to +2% have taken 4+ quarters; thesis horizon is 18 months.
 
-**R2.** Activist or PE-led take-private bid. *Counter:* the position is sized 1.0% — half of typical short sizing — partly to absorb take-out risk. EV/EBITDA at base case is 10.5×; a take-private at 13× EBITDA would imply ~$78, modest mark-up from short entry.
+**R2.** Activist or PE-led take-private bid. *Counter:* the position is sized 1.0% — half of typical short sizing — partly to absorb take-out risk. We assume no PE bid at >15% premium materializes within the 18-month horizon (`a_no_takeout_squeeze`). EV/EBITDA at base case is 10.5×; a take-private at 13× EBITDA would imply ~$78, modest mark-up from short entry.
 
 **R3.** Short squeeze on cohort sentiment shift. *Counter:* short interest is currently 12% of float and rising; squeeze risk is real. Position size is constrained by borrow availability, not by conviction; the 5.1%-of-available position size leaves meaningful headroom.
 

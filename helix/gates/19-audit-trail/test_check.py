@@ -143,27 +143,31 @@ def test_divide_by_zero_fails():
     assert "EVAL_FAILED" in _codes(check(t, {}))
 
 
-def test_synthetic_passing_transformations():
-    """Re-execute the committed synthetic-passing transformations.yaml end-to-end."""
+def _check_example(bundle: str) -> list:
+    import json as _json
     import yaml as _yaml
     root = Path(__file__).resolve().parents[3]
-    t = _yaml.safe_load((root / "examples" / "synthetic-passing" / "transformations.yaml").read_text())
-    s = {
-        "row_revenue_fy25": 1592.4,
-        "row_revenue_fy24": 1448.3,
-        "row_consumables_fy25": 759.8,
-        "row_installed_base_fy25": 18213,
-        "row_installed_base_fy24": 16287,
-        "row_eps_fy26e_consensus": 5.65,
-    }
-    findings = check(t, s)
+    t = _yaml.safe_load((root / "examples" / bundle / "transformations.yaml").read_text())
+    s = _json.loads((root / "examples" / bundle / "source_values.json").read_text())
+    return check(t, s)
+
+
+def test_synthetic_passing_transformations():
+    findings = _check_example("synthetic-passing")
     errors = [f for f in findings if f.severity == "error"]
-    # Allow up to 1 figure to fail due to nuances in computed fields; report which.
-    if errors:
-        print(f"  synthetic-passing transformations: {len(errors)} error(s):")
-        for e in errors:
-            print(f"    {e.format()}")
-    assert len(errors) <= 1, f"expected at most 1 failure (tolerance/rounding); got {len(errors)}"
+    assert errors == [], "synthetic-passing should pass gate 19: " + "; ".join(f.format() for f in errors)
+
+
+def test_synthetic_quality_compounder_transformations():
+    findings = _check_example("synthetic-quality-compounder")
+    errors = [f for f in findings if f.severity == "error"]
+    assert errors == [], "synthetic-quality-compounder should pass gate 19: " + "; ".join(f.format() for f in errors)
+
+
+def test_synthetic_short_transformations():
+    findings = _check_example("synthetic-short")
+    errors = [f for f in findings if f.severity == "error"]
+    assert errors == [], "synthetic-short should pass gate 19: " + "; ".join(f.format() for f in errors)
 
 
 if __name__ == "__main__":

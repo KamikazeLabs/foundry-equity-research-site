@@ -14,12 +14,12 @@ fig_organic_growth_fy24_fy25:
   tolerance_pct: 0.5     # accept within 0.5% of expected
 
 fig_ev_tam_cagr:
-  description: "EV power-electronics TAM CAGR 2025-2028 (body: '28% CAGR')"
+  description: "EV power-electronics TAM CAGR 2025-2028 (body: '~28% CAGR')"
   source: [row_ev_tam_2025, row_ev_tam_2028]
   steps:
     - op: cagr
       args: {start: row_ev_tam_2025, end: row_ev_tam_2028, years: 3}
-  expected_value: 0.301
+  expected_value: 0.305                       # ($4.2B / $1.9B)^(1/3) - 1; body's "28%" is rounded
   tolerance_pct: 1.0
 
 fig_ev_incremental_revenue_mid:

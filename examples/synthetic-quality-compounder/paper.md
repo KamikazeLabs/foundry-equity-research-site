@@ -30,21 +30,21 @@ ROIC has averaged 24% over the past five years (FY20–FY25), top decile in the 
 
 The moat has two layers. First, ISO-9100 and customer-specific qualifications take 18–24 months to obtain; switching costs for OEMs are material once a part is qualified. Second, ACME's tooling library — 11,400 active part numbers as of FY25 — is a proprietary database competitors cannot replicate quickly.
 
-We tested durability via primary-source channel checks across nine distributors (Apr 2026). No distributor reported customer attrition or active second-sourcing programs targeting ACME parts.
+We tested durability via primary-source channel checks across nine distributors (Apr 2026). No distributor reported customer attrition or active second-sourcing programs targeting ACME parts. Our base case further assumes no regulatory or technology disruption to the precision-machining moat through FY28 (`a_no_disruption`).
 
 ## Growth runway
 
-EV power-electronics is the runway. Industry estimates put the addressable market for precision-machined power-module components at ~$4.2B by 2028 (CAGR 28% from $1.9B in 2025). ACME's qualified position with three top-five EV platform suppliers gives a credible path to 12–15% market share at maturity, implying $500–650M of incremental revenue at maturity at 19–21% gross margins.
+EV power-electronics is the runway. Industry estimates put the addressable market for precision-machined power-module components at ~$4.2B by 2028 (CAGR 28% from $1.9B in 2025). ACME's qualified position with three top-five EV platform suppliers gives a credible path to 12–15% market share at maturity, implying $500–650M of incremental revenue at maturity at 19–21% gross margins (`a_ev_qualified_to_share`).
 
-Capital intensity for the expansion: ~$240M cumulative through FY28, fully fundable from operating cash flow.
+Capital intensity for the expansion: ~$240M cumulative through FY28, fully fundable from operating cash flow (`a_capex_self_funded`).
 
 ## Management and capital allocation
 
-Founder-led; CEO has been at ACME 18 years. Capital allocation history (FY18–FY25): 62% reinvestment (capex + R&D), 23% acquisitions (3 tuck-ins at average 7× EBITDA), 15% buybacks. No special dividends. Acquisition track record: 2 of 3 deals achieved underwritten synergies within 24 months; the third underperformed in part due to a customer concentration issue not flagged in diligence.
+Founder-led; CEO has been at ACME 18 years. Capital allocation history (FY18–FY25): 62% reinvestment (capex + R&D), 23% acquisitions (3 tuck-ins at average 7× EBITDA), 15% buybacks. No special dividends. Acquisition track record: 2 of 3 deals achieved underwritten synergies within 24 months; the third underperformed in part due to a customer concentration issue not flagged in diligence. We assume continued capital-allocation discipline through FY28 (`a_capital_allocation_consistency`).
 
 ## Financial model
 
-Base case (FY28E): revenue $1.84B (CAGR 11% from FY25 $1.34B), gross margin 38.5% (vs FY25 37.1%), operating margin 22.0% (vs FY25 19.8%), EPS $5.65. Bull case EPS $6.40; bear case $4.20.
+Base case (FY28E): revenue $1.84B (CAGR 11% from FY25 $1.34B), gross margin 38.5% (vs FY25 37.1%, with `a_margin_persist` underlying the trajectory at constant mix), operating margin 22.0% (vs FY25 19.8%), EPS $5.65. Bull case EPS $6.40; bear case $4.20.
 
 The base case embeds the EV ramp at ~80% of qualified-platform volumes converting to ACME parts. Bull assumes 100%; bear assumes 50%.
 

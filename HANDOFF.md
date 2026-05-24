@@ -62,7 +62,11 @@ Total: ~75 minutes to fully load the blueprint.
 | `examples/synthetic-passing/` | Shipped-paper example (Judge ruled bull) | Reference |
 | `examples/synthetic-short/` | Shipped-short example (8-turn debate) | Reference |
 | `examples/VALIDATION_NOTES.md` | The eight spec gaps surfaced during validation | Resolved (commit `308fbdf`) |
-| `.github/workflows/helix-gates.yml` | CI for gate 13 on every push | Production |
+| `research/base-rates/*.yaml` | Sample base-rate library file (gate 15 input) | One worked example committed |
+| `research/post-mortems/GLTZ-*.md` | Sample post-mortem validating M3 PRM schema | One worked example committed |
+| `Makefile` | `make test` / `make verify-all` / `make check-source-values` | Production |
+| `tools/check_source_values.py` | Lints source_values.json vs transformations.yaml row refs | Production |
+| `.github/workflows/helix-gates.yml` | CI for gates 13, 14, 17, 18, 19, 20 on every push | Production |
 
 ---
 

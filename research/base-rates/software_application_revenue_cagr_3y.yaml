@@ -1,0 +1,47 @@
+# Base rate: 3-year forward revenue CAGR for application software issuers.
+# Consumed by gate 15.
+
+metric: revenue_cagr_3y
+sector_anchor: software_application
+sample_size: 412
+period: 2010-2025
+last_refreshed: 2026-Q1
+
+source:
+  provider: "Compustat North America"
+  filter: |
+    SIC 7372 (Prepackaged Software). Screened for market capitalization
+    $500M-$10B at period start. 3-year forward revenue CAGR computed
+    from reported period-start and period-end revenue. M&A revenue
+    contribution stripped per company-disclosed organic growth where
+    available; gross-of-M&A used otherwise.
+
+distribution:
+  median: 0.12
+  p25: 0.06
+  p75: 0.22
+  p90: 0.31
+  p95: 0.38
+  p99: 0.51
+
+notes: |
+  Distribution is right-skewed. A claim at p90 or above requires explicit
+  justification in the paper (gate 15 enforces this via the 2-sigma rule
+  plus the "explicit outlier" exemption).
+
+  The long right tail (~10% of issuers > 31% 3-year CAGR) is concentrated
+  in the 2014-2017 SaaS expansion. Cycle-adjust when applying to a
+  current paper; the median may be a better anchor than the mean.
+
+  The 2020 cohort (COVID demand pull-forward) is included; results are
+  consistent with the broader distribution within ~150bp of the median.
+
+example_application: |
+  A paper forecasting 28% 3-year revenue CAGR for a $2B SaaS issuer:
+    z-score: ~+0.8 from the median (within p75-p90 band)
+    no explicit outlier justification required (gate 15 passes)
+
+  A paper forecasting 42% 3-year revenue CAGR for the same issuer:
+    between p95 and p99
+    gate 15 fails unless the paper documents the specific differentiating
+    factors that place this issuer in the top 1-5% of historical comps

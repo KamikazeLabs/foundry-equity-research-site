@@ -33,17 +33,17 @@ ACME's qualified-platform count (3 of top 5 EV platform suppliers) is denser tha
 
 ## all_attempts
 
-1. **Conversion-rate precedent (above).** Result: strong. Used as strongest_counter.
+1. **Conversion-rate precedent (above).** provenance: `fresh`. Result: strong. Used as `strongest_counter`.
 
-2. **TAM overstatement.** Attempted to find a primary source contradicting IHS Markit's $4.2B 2028 EV power-electronics TAM. Found one competing forecast at $3.4B (Wood Mackenzie, 2026 outlook). Result: weak. The TAM range is $3.4–4.5B across analysts; ACME's thesis survives at $3.4B with reduced upside (incremental revenue $390–520M instead of $500–650M).
+2. **TAM overstatement.** provenance: `fresh`. Attempted to find a primary source contradicting IHS Markit's $4.2B 2028 EV power-electronics TAM. Found one competing forecast at $3.4B (Wood Mackenzie, 2026 outlook). Result: weak. The TAM range is $3.4–4.5B across analysts; ACME's thesis survives at $3.4B with reduced upside (incremental revenue $390–520M instead of $500–650M).
 
-3. **Channel attrition contradiction.** Searched for any public mention of distributor or OEM second-sourcing ACME parts. Result: failed to produce. No primary source contradicts the paper's channel-check claim.
+3. **Channel attrition contradiction.** provenance: `fresh`. Searched for any public mention of distributor or OEM second-sourcing ACME parts. Result: failed_to_produce. No primary source contradicts the paper's channel-check claim.
 
-4. **Customer concentration breach.** Checked customer 10-K filings for spend > 4% of ACME revenue. Customer "MajorOEM Inc" 10-K Item 7 discloses $58M spend with ACME in FY25, representing 4.3% of ACME revenue. Result: weak. Above the paper's "no single customer over 4%" claim, but only marginally; rounds to 4.3% vs. paper's >4% framing.
+4. **Customer concentration breach.** provenance: `fresh`. Checked customer 10-K filings for spend > 4% of ACME revenue. Customer "MajorOEM Inc" 10-K Item 7 discloses $58M spend with ACME in FY25, representing 4.3% of ACME revenue. Result: weak. Above the paper's "no single customer over 4%" claim, but only marginally; rounds to 4.3% vs. paper's >4% framing.
 
-5. **Macro / refi.** Already raised by the macro reviewer (see disagreement_matrix.md); addressed in the paper. Counter-construction did not double-count.
+5. **Macro / refi.** provenance: `delegated`. Raised by the macro reviewer (see `disagreement_matrix.md`); addressed in the paper. Result: weak. Counter-construction did not double-count toward the minimum-5 (per spec A.5: delegated items don't count).
 
-6. **Capital allocation regression.** Checked CEO's track record on the third (underperforming) acquisition. Result: weak. The 2 of 3 success rate is not exceptional but is consistent with industrial-components mean (~55–65% per BCG industrial M&A study, 2024).
+6. **Capital allocation regression.** provenance: `fresh`. Checked CEO's track record on the third (underperforming) acquisition. Result: weak. The 2 of 3 success rate is not exceptional but is consistent with industrial-components mean (~55–65% per BCG industrial M&A study, 2024).
 
 ## search_space_covered
 

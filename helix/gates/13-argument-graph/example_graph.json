@@ -1,0 +1,31 @@
+{
+  "paper_id": "FER-2026-Q2-example-compounder",
+  "extracted_at": "2026-05-23T20:00:00Z",
+  "nodes": [
+    {"id": "cite_10k_seg", "kind": "citation", "label": "10-K FY25 p.45 segment revenue table", "source_section": "economic-engine"},
+    {"id": "cite_channel_q2", "kind": "citation", "label": "Channel check Apr 2026, 9 distributors", "source_section": "durability"},
+    {"id": "cite_peer_roic", "kind": "citation", "label": "Peer ROIC distribution 2015-2025, Capital IQ", "source_section": "economic-engine"},
+    {"id": "cite_capex_history", "kind": "citation", "label": "Reinvestment history FY18-FY25", "source_section": "growth-runway"},
+    {"id": "assume_margin", "kind": "assumption", "label": "Gross margin sustains within 100bps of FY25 through FY28", "source_section": "financial-model"},
+    {"id": "assume_no_disruption", "kind": "assumption", "label": "No regulatory or technology disruption in core segment", "source_section": "risks-and-counters"},
+    {"id": "claim_organic_growth", "kind": "claim", "label": "Core segment grew 18% organic in FY25", "source_section": "economic-engine"},
+    {"id": "claim_durable_share", "kind": "claim", "label": "Market share gains are durable (no churn signal in 9 channels)", "source_section": "durability"},
+    {"id": "claim_high_roic", "kind": "claim", "label": "ROIC is in the top decile vs. peers", "source_section": "economic-engine"},
+    {"id": "claim_reinvest_runway", "kind": "claim", "label": "Reinvestment runway of >$2B incremental capital at >25% ROIC", "source_section": "growth-runway"},
+    {"id": "claim_value_creation", "kind": "claim", "label": "Equity value compounds at ~15% per annum given the runway and the ROIC", "source_section": "valuation-and-entry"},
+    {"id": "conclusion", "kind": "conclusion", "label": "Multiple should re-rate from 18x to 22x by FY28; expected return 70-90% over 3yr", "source_section": "valuation-and-entry"}
+  ],
+  "edges": [
+    {"from": "cite_10k_seg", "to": "claim_organic_growth"},
+    {"from": "cite_channel_q2", "to": "claim_durable_share"},
+    {"from": "cite_peer_roic", "to": "claim_high_roic"},
+    {"from": "cite_capex_history", "to": "claim_reinvest_runway"},
+    {"from": "claim_organic_growth", "to": "claim_value_creation"},
+    {"from": "claim_durable_share", "to": "claim_value_creation"},
+    {"from": "claim_high_roic", "to": "claim_value_creation"},
+    {"from": "claim_reinvest_runway", "to": "claim_value_creation"},
+    {"from": "assume_margin", "to": "claim_value_creation"},
+    {"from": "assume_no_disruption", "to": "claim_value_creation"},
+    {"from": "claim_value_creation", "to": "conclusion", "weight": 1.0}
+  ]
+}

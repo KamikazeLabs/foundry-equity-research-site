@@ -1,0 +1,102 @@
+paper_id: FER-SYN-2026-Q2-GLTZ
+status: SHIPPED
+
+generated_at: 2026-05-23T20:00:00Z
+shape: mean-reversion-short
+constitution_sha: "(populated at runtime)"
+
+milestones_enabled:
+  M0: true
+  M1: true
+  M2: true
+  M3: false
+  M4: true
+
+gate_results:
+  01-number-tie:           {passed: true,  duration_ms: 3900, findings: 0}
+  02-citation-resolver:    {passed: true,  duration_ms: 5200, findings: 0}
+  03-date-consistency:     {passed: true,  duration_ms: 1100, findings: 0}
+  04-ticker-validity:      {passed: true,  duration_ms: 200,  findings: 0}
+  05-chart-render:         {passed: true,  duration_ms: 7800, findings: 0}
+  06-font-embedding:       {passed: true,  duration_ms: 920,  findings: 0}
+  07-brand-check:          {passed: true,  duration_ms: 1000, findings: 0}
+  08-toc-parity:           {passed: true,  duration_ms: 670,  findings: 0}
+  09-page-budget:          {passed: true,  duration_ms: 130,  findings: 0}
+  10-disclaimer:           {passed: true,  duration_ms: 75,   findings: 0}
+  11-spell-grammar:        {passed: true,  duration_ms: 2700, findings: 0}
+  12-ai-concurrence:       {passed: true,  duration_ms: 11200, findings: 0, note: "legacy gate; retained transitionally"}
+  13-argument-graph:       {passed: true,  duration_ms: 245,  findings: 0, min_path_length_to_conclusion: 2, max_path_length_to_conclusion: 4, conclusion_edges_load_bearing: 2, conclusion_edges_total: 3}
+  14-counter-thesis:       {passed: true,  duration_ms: 175,  findings: 0, recommendation: "ship_with_appendix", strongest_counter_strength: "partial"}
+  15-base-rate:            {passed: true,  duration_ms: 2350, findings: 0}
+  16-reflexivity:          {passed: true,  duration_ms: 1750, findings: 0, note: "Short reflexivity inverts: contrarian consensus accelerates rather than compresses"}
+  17-liquidity:            {passed: true,  duration_ms: 340,  findings: 0, adv_ratio: 0.041, borrow_utilization: 0.051}
+  18-disclosure-footprint: {passed: true,  duration_ms: 1500, findings: 0}
+  19-audit-trail:          {passed: true,  duration_ms: 2300, findings: 0}
+  20-constitution:         {passed: true,  duration_ms: 4100, findings: 0, provisions_invoked: ["Sec II.3", "Sec II.5", "Sec III.6", "Sec III.7", "Sec III.8"]}
+
+argument_graph:
+  node_count: 28
+  edge_count: 32
+  citation_count: 15
+  assumption_count: 4
+  claim_count: 8
+  conclusion_count: 1
+  min_path_length_to_conclusion: 2
+  max_path_length_to_conclusion: 4
+  conclusion_edges_load_bearing: 2     # claim_target_48 (0.9), claim_kill_switch_complete (0.8)
+  conclusion_edges_total: 3
+  load_bearing_variables_covered_by_kill_switch: 4  # inventory, SSS, multiple, off-price
+
+reviewer_panel:
+  forensics:  {verdict: "concerns", confidence: 0.84, findings: 2, model_family: "Claude 4.X"}
+  industry:   {verdict: "pass",     confidence: 0.79, findings: 0, model_family: "GPT-5.X"}
+  macro:      {verdict: "pass",     confidence: 0.66, findings: 1, model_family: "Claude 4.X"}
+  disagreement_pairs: 0
+  disjoint_priors_satisfied: true
+  distinct_families_count: 2
+  routing: "forensics-priority"          # mean-reversion-short shape
+
+debate:
+  turns: 8
+  bull_score: {factual: 25, responsive: 25, logical: 25, total: 75}
+  bear_score: {factual: 15, responsive: 17, logical: 16, total: 48}
+  external_citations_by_bear: 2
+  external_citations_verified: 2
+  judge_verdict: "bull"           # short thesis upheld
+  judge_margin: 0.71
+
+counter_construction:
+  candidates_generated: 6
+  fresh_count: 5
+  ledger_count: 0
+  delegated_count: 1
+  strongest_counter_strength: "partial"
+  recommendation: "ship_with_appendix"
+  search_space_summary: "GLTZ 10-K/Q/8-K and transcripts, accessories category NPD data, luxury/accessories peer 10-Ks for recognition language, Helix ledger, PE chatter via M&A databases"
+  provenance_minimum_satisfied: true   # 5 fresh + 0 ledger >= 5
+
+funsearch:
+  enabled: false
+  selected_was_analyst_first_instinct: true
+
+prm:
+  enabled: false
+  min_edge_score: null
+
+desk_lead_signoff:
+  mechanical: true
+  outcome: SHIPPED
+  signoff_at: 2026-05-23T20:30:00Z
+
+publish_outputs:
+  paper_pdf_sha: "(populated at runtime)"
+  appendix_disagreement_matrix_present: true
+  appendix_debate_transcript_present: true
+  appendix_counter_attempt_present: true
+  appendix_argument_graph_present: true
+  appendix_caveats:
+    - "Off-price recognition presented as range $42M-$110M; central thesis independent of exact figure"
+    - "Inventory-bloat interpretation: demand-shortfall vs. channel-sell-in scenarios both lead to short outcome"
+    - "Macro-path dependency: thesis assumes consumer-discretionary deceleration through Q4 FY26"
+    - "FY24 Q1 brand-vs-category divergence added to demonstrate brand-specific (not macro-driven) deterioration"
+    - "Monitoring: Q3 FY26 print (3 Oct 2026); SSS-watch for early exit if returns to flat"

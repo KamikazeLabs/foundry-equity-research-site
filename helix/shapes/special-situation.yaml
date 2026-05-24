@@ -1,0 +1,60 @@
+name: Special situation
+slug: special-situation
+description: >
+  Event-driven long or short: spin-off, restructuring, capital return,
+  merger arbitrage, or post-bankruptcy equity. Defined by a discrete
+  event with a knowable date or trigger condition.
+
+sections:
+  - one-page-summary
+  - the-event                # what is happening and when
+  - mechanics                # how the situation resolves mechanically
+  - what-the-market-misses
+  - pro-forma-valuation
+  - timing-and-catalyst-path
+  - risks                    # event slips, terms change, regulatory
+  - kill-switch
+  - appendix
+
+page_budget: 28
+chart_budget: 6
+
+gates:
+  required:
+    - 01-number-tie
+    - 02-citation-resolver
+    - 03-date-consistency     # extra-critical here
+    - 04-ticker-validity
+    - 05-chart-render
+    - 06-font-embedding
+    - 07-brand-check
+    - 08-toc-parity
+    - 09-page-budget
+    - 10-disclaimer
+    - 11-spell-grammar
+    - 12-ai-concurrence
+    - 13-argument-graph
+    - 14-counter-thesis
+    - 15-base-rate            # base rate of similar events resolving as expected
+    - 17-liquidity
+    - 18-disclosure-footprint
+    - 19-audit-trail
+    - 20-constitution
+  optional:
+    - 16-reflexivity          # less relevant for one-off events
+
+reviewer_panel:
+  - reviewer-forensics
+  - reviewer-industry
+  - reviewer-macro
+
+debate:
+  enabled: true
+  turns: 6
+
+counter_construction:
+  enabled: true
+  focus: >
+    Find a comparable event from the last 10 years where the structural
+    logic was identical and the resolution diverged from what the bulls
+    expected.

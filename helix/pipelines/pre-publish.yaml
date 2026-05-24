@@ -1,0 +1,121 @@
+name: pre-publish
+description: >
+  Runs once the draft is complete. Executes the 20 gates and the
+  reviewer/debate/counter-construction stack. Determines whether the
+  paper ships.
+
+trigger:
+  on: draft_complete
+
+stages:
+
+  # mechanical gates run first; cheap to fail-fast
+  - id: mechanical-gates
+    parallel: true
+    gates:
+      - 01-number-tie
+      - 02-citation-resolver
+      - 03-date-consistency
+      - 04-ticker-validity
+      - 05-chart-render
+      - 06-font-embedding
+      - 07-brand-check
+      - 08-toc-parity
+      - 09-page-budget
+      - 10-disclaimer
+      - 11-spell-grammar
+      - 17-liquidity            # deterministic
+      - 18-disclosure-footprint # deterministic
+      - 19-audit-trail          # deterministic
+    on_fail: hold_paper
+
+  # reasoning gates that do not need the argument graph
+  - id: reasoning-gates
+    parallel: true
+    gates:
+      - 15-base-rate
+      - 16-reflexivity
+
+  # reviewer panel (disjoint priors)
+  - id: reviewer-panel
+    parallel: true
+    agents:
+      - reviewer-forensics
+      - reviewer-industry
+      - reviewer-macro
+    rule: |
+      a "block" verdict from any reviewer holds the paper.
+      "concerns" verdicts must each be acknowledged in the appendix.
+    output: disagreement_matrix
+
+  # counter-construction in parallel with debate
+  - id: adversarial-block
+    parallel: true
+    stages:
+      - id: counter-construction
+        agent: counter-construction
+        outputs: [counter_attempt.md]
+      - id: debate
+        agents:
+          - debate-bull
+          - debate-bear
+        config:
+          turns: from_shape
+          max_words_per_turn: 400
+        outputs: [debate_transcript.md]
+      - id: judge
+        agent: debate-judge
+        inputs: [paper, debate_transcript.md, HELIX_CONSTITUTION.md]
+        outputs: [judge_verdict.yaml]
+
+  - id: counter-thesis-gate
+    gate: 14-counter-thesis
+    inputs: [counter_attempt.md, paper.md]
+
+  # argument graph extraction + check (runs AFTER the adversarial block so the
+  # extractor can incorporate claims from debate_transcript.md and
+  # counter_attempt.md, per A.1)
+  - id: argument-graph
+    sequential:
+      - run: argument-graph-extractor
+        inputs: [paper.md, appendix.md, debate_transcript.md, counter_attempt.md]
+        outputs: [graph.json]
+      - run: quant-reviewer-approval
+        inputs: [graph.json]
+        on_reject: rebuild_graph_then_retry
+      - gate: 13-argument-graph
+        inputs: [graph.json]
+    on_fail: hold_paper
+
+  - id: ai-concurrence-legacy
+    gate: 12-ai-concurrence       # transitional; replaced by the panel + debate over time
+    optional: true                # toggleable as the new stack matures
+
+  # final
+  - id: constitution-gate
+    gate: 20-constitution
+    inputs:
+      - all upstream gate outputs
+      - disagreement_matrix
+      - debate_transcript.md
+      - judge_verdict.yaml
+      - counter_attempt.md
+    on_fail: hold_paper
+
+  - id: desk-lead-signoff
+    actor: desk-lead
+    inputs: [judge_verdict.yaml, all gate outputs]
+    rule: |
+      if all gates pass and judge.publication_recommendation.ship == true:
+        sign-off is mechanical
+      else:
+        require documented justification (entered into post-mortem)
+
+  - id: publish
+    output:
+      - paper.pdf (main document)
+      - appendix/disagreement_matrix.md
+      - appendix/debate_transcript.md
+      - appendix/counter_attempt.md
+      - appendix/argument_graph.json (compact rendering)
+      - telemetry/<paper_id>.yaml (capture for post-mortem)

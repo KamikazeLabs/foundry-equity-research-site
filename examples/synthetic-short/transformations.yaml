@@ -1,0 +1,70 @@
+# Audit-trail DSL — gate 19 input for FER-SYN-2026-Q2-GLTZ
+
+fig_inventory_days_change:
+  description: "Inventory days expansion FY24 Q1 -> FY26 Q1 (body: '+61%')"
+  source: [row_inventory_days_q1fy26, row_inventory_days_q1fy24]
+  steps:
+    - op: growth_rate
+      args: {current: row_inventory_days_q1fy26, prior: row_inventory_days_q1fy24}
+  expected_value: 0.6136
+  tolerance_pct: 1.0
+
+fig_demo_shift_pp:
+  description: "Under-25 cohort decline (body: '16pp decline')"
+  source: [row_customer_demo_fy23, row_customer_demo_fy26]
+  steps:
+    - op: subtract
+      args: {from: row_customer_demo_fy23, value: row_customer_demo_fy26}
+  expected_value: 16.0
+  unit: "percentage_points"
+  tolerance_pct: 0.5
+
+fig_target_price:
+  description: "Target price = trailing FY26E EPS * compressed multiple"
+  source: [row_eps_fy26e_consensus]
+  steps:
+    - op: multiple_apply
+      args: {value: row_eps_fy26e_consensus, multiple: 16.0}
+  expected_value: 48.00
+  unit: "USD/sh"
+  tolerance_pct: 0.5
+
+fig_gross_short_return:
+  description: "Gross return on short position ($84 entry -> $48 target)"
+  source: []
+  steps:
+    - op: subtract
+      args: {from: 84.20, value: 48.00}
+    - op: divide
+      args: {numerator: __prev, denominator: 84.20}
+  expected_value: 0.4299
+  tolerance_pct: 1.0
+  notes: >
+    Short return = (entry - exit) / entry. Gross of borrow cost.
+
+fig_net_short_return_18mo:
+  description: "Net return after borrow (body: '~38% net')"
+  source: [row_borrow_rate]
+  steps:
+    - op: multiply
+      args: {value: row_borrow_rate, factor: 1.5}      # 18 months = 1.5 years
+    - op: subtract
+      args: {from: 0.4299, value: __prev}
+  expected_value: 0.3819
+  tolerance_pct: 1.0
+  notes: >
+    Approximation; ignores re-rate dynamics on borrow rate and assumes full
+    holding period.
+
+fig_position_borrow_utilization:
+  description: "Position borrow utilization (body: '2.6% of available')"
+  source: [row_borrow]
+  steps:
+    - op: divide
+      args: {numerator: 0.214, denominator: row_borrow}     # 214K / 8.3M (units: millions of shares)
+  expected_value: 0.0258
+  tolerance_pct: 2.0
+  notes: >
+    Position size in shares is computed offline from desk-portfolio NAV
+    and entry price ($18M / $84.20 ~= 214K shares); we cite the resulting
+    ratio.

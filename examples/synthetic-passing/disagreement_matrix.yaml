@@ -1,0 +1,59 @@
+paper_id: FER-SYN-2026-Q2-PRSM
+generated_at: 2026-05-22T14:00:00Z
+
+reviewer_panel:
+  - slug: reviewer-forensics
+    verdict: pass
+    confidence: 0.89
+    model_family: "Claude 4.X"
+    finding_count: 0
+    findings: []
+
+  - slug: reviewer-industry
+    verdict: concerns
+    confidence: 0.74
+    model_family: "GPT-5.X"
+    finding_count: 1
+    findings:
+      - severity: warn
+        code: CUSTOMER_CONCENTRATION
+        paper_section: risks-and-counters
+        message: >
+          Top-10 concentration of 22% is below industry warning thresholds, but one
+          customer (LabCorp) disclosed $74M in spend with PRSM (4.6% of revenue),
+          slightly above the paper's "no customer over 4.5%" framing. Paper should
+          reconcile or flag.
+        evidence: ["LabCorp FY25 10-K Item 7 p.52", "PRSM FY25 10-K Item 1A p.21"]
+
+  - slug: reviewer-macro
+    verdict: concerns
+    confidence: 0.71
+    model_family: "Claude 4.X"
+    finding_count: 1
+    findings:
+      - severity: warn
+        code: REGULATORY_TAIL
+        paper_section: risks-and-counters
+        message: >
+          CMS reimbursement schedules for molecular diagnostics show a -8% cut
+          effective 2026-Q3 affecting the next-gen sequencing for inherited cancer
+          risk category. ~6% of PRSM consumables revenue. Paper does not disclose.
+        evidence: ["CMS molecular diagnostics fee schedule 2026, p.18", "PRSM FY25 10-K Item 7 p.52"]
+
+pairwise:
+  - {a: reviewer-forensics, b: reviewer-industry, agreement: concur}
+  - {a: reviewer-forensics, b: reviewer-macro,    agreement: concur}
+  - {a: reviewer-industry,  b: reviewer-macro,    agreement: concur}
+
+disagreement_count: 0
+disjoint_priors_satisfied: true
+distinct_families_count: 2     # Claude family + GPT family
+
+resolution:
+  notes: |
+    Both reviewers raised `concerns`, neither raised `block`. The two findings
+    (customer concentration footnote, CMS reimbursement cut) are appendix
+    disclosures, not body rewrites.
+  additional_requirements_on_paper:
+    - "Reconcile or flag the LabCorp 4.6% concentration in body §Durability"
+    - "Disclose the -8% CMS reimbursement cut in body §Risks and counters with quantified EPS impact (~$3M revenue, ~$0.02 EPS at FY28)"

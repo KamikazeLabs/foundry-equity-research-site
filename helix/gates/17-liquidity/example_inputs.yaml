@@ -1,0 +1,8 @@
+# Example liquidity inputs for FER-SYN-2026-Q2-GLTZ (mean-reversion short).
+# Mirrors the values in the synthetic-short telemetry.
+
+position_size_usd: 845000
+adv_20d_usd: 86000000
+direction: short
+position_size_shares: 4100000
+shares_available_to_borrow: 8300000

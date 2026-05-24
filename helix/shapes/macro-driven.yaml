@@ -1,0 +1,62 @@
+name: Macro-driven
+slug: macro-driven
+description: >
+  Sector or thematic position predicated on a macro variable
+  (rates, FX, commodity prices, credit spreads, regulatory shifts).
+  Single-name expression but macro thesis at the core.
+
+sections:
+  - one-page-summary
+  - the-macro-thesis
+  - why-this-equity-expression
+  - sensitivity-and-elasticity
+  - what-the-market-is-pricing
+  - catalyst-path
+  - financial-model
+  - valuation-and-entry
+  - risks-and-counters
+  - kill-switch
+  - appendix
+
+page_budget: 36
+chart_budget: 14
+
+gates:
+  required:
+    - 01-number-tie
+    - 02-citation-resolver
+    - 03-date-consistency
+    - 04-ticker-validity
+    - 05-chart-render
+    - 06-font-embedding
+    - 07-brand-check
+    - 08-toc-parity
+    - 09-page-budget
+    - 10-disclaimer
+    - 11-spell-grammar
+    - 12-ai-concurrence
+    - 13-argument-graph
+    - 14-counter-thesis
+    - 15-base-rate
+    - 16-reflexivity
+    - 18-disclosure-footprint
+    - 19-audit-trail
+    - 20-constitution
+  optional:
+    - 17-liquidity
+
+reviewer_panel:
+  - reviewer-macro            # primary for macro shapes
+  - reviewer-industry
+  - reviewer-forensics
+
+debate:
+  enabled: true
+  turns: 8                    # macro theses attract more pushback
+
+counter_construction:
+  enabled: true
+  focus: >
+    Find a historical period when the same macro thesis was the
+    consensus trade and the equity expression underperformed the
+    thesis prediction by a meaningful margin.

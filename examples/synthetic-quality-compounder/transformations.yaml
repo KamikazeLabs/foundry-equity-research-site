@@ -1,0 +1,59 @@
+# Audit-trail DSL — gate 19 input for FER-SYN-2026-Q2-ACME
+#
+# Every figure in the paper that is not directly cited from a single source row
+# is defined here. Gate 19 re-executes each definition deterministically and
+# compares to the value as published.
+
+fig_organic_growth_fy24_fy25:
+  description: "Organic revenue growth FY24 -> FY25 (body: '12.7% organic')"
+  source: [row_revenue_fy25, row_revenue_fy24]
+  steps:
+    - op: growth_rate
+      args: {current: row_revenue_fy25, prior: row_revenue_fy24}
+  expected_value: 0.1267
+  tolerance_pct: 0.5     # accept within 0.5% of expected
+
+fig_ev_tam_cagr:
+  description: "EV power-electronics TAM CAGR 2025-2028 (body: '~28% CAGR')"
+  source: [row_ev_tam_2025, row_ev_tam_2028]
+  steps:
+    - op: cagr
+      args: {start: row_ev_tam_2025, end: row_ev_tam_2028, years: 3}
+  expected_value: 0.305                       # ($4.2B / $1.9B)^(1/3) - 1; body's "28%" is rounded
+  tolerance_pct: 1.0
+
+fig_ev_incremental_revenue_mid:
+  description: "Midpoint of EV incremental revenue range ($500-650M)"
+  source: [row_ev_tam_2028]
+  steps:
+    - op: multiply
+      args: {value: row_ev_tam_2028, factor: 0.135}    # midpoint of 12-15% share
+  expected_value: 567.0
+  unit: "USDmm"
+  tolerance_pct: 2.0
+
+fig_fy28_target_price:
+  description: "FY28 target price = base EPS * exit multiple"
+  source: []
+  steps:
+    - op: multiply
+      args: {value: 5.65, factor: 22.0}        # both numbers from paper body
+  expected_value: 124.30
+  unit: "USD/sh"
+  tolerance_pct: 0.5
+  notes: >
+    Both inputs are claims, not source rows. Gate 19 validates the
+    arithmetic but defers truthfulness of inputs to gate 15 (base-rate)
+    and gate 13 (argument-graph).
+
+fig_irr_3yr:
+  description: "Base case 3-year IRR"
+  source: []
+  steps:
+    - op: irr_simple
+      args: {start_price: 87.40, end_price: 124.30, years: 3}
+  expected_value: 0.124
+  tolerance_pct: 1.0
+  notes: >
+    No dividend; geometric. If ACME paid material dividends, total-return
+    IRR would require additional source rows.

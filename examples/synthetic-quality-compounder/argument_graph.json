@@ -1,0 +1,72 @@
+{
+  "paper_id": "FER-SYN-2026-Q2-ACME",
+  "extracted_at": "2026-05-23T20:00:00Z",
+  "nodes": [
+    {"id": "cite_revenue_fy25", "kind": "citation", "label": "row_revenue_fy25 = $1,340.2M", "source_section": "economic-engine"},
+    {"id": "cite_revenue_fy24", "kind": "citation", "label": "row_revenue_fy24 = $1,189.6M", "source_section": "economic-engine"},
+    {"id": "cite_gm_fy25", "kind": "citation", "label": "row_gm_fy25 = 37.1%", "source_section": "economic-engine"},
+    {"id": "cite_opm_fy25", "kind": "citation", "label": "row_opm_fy25 = 19.8%", "source_section": "economic-engine"},
+    {"id": "cite_roic_5yr", "kind": "citation", "label": "row_roic_5yr = 24.1% mean", "source_section": "economic-engine"},
+    {"id": "cite_peer_roic", "kind": "citation", "label": "row_peer_roic threshold 21.4%", "source_section": "economic-engine"},
+    {"id": "cite_ev_tam_2028", "kind": "citation", "label": "row_ev_tam_2028 = $4.2B", "source_section": "growth-runway"},
+    {"id": "cite_ev_platforms_qualified", "kind": "citation", "label": "row_ev_platforms_qualified = 3 of 5", "source_section": "growth-runway"},
+    {"id": "cite_channel_attrition", "kind": "citation", "label": "row_channel_attrition = 0 / 9 distributors", "source_section": "durability"},
+    {"id": "cite_capex_plan", "kind": "citation", "label": "row_capex_plan_fy26_fy28 ~ $240M", "source_section": "growth-runway"},
+    {"id": "cite_ma_history", "kind": "citation", "label": "row_ma_history_fy18_fy25: 3 deals, 7x EBITDA avg", "source_section": "management-and-capital-allocation"},
+    {"id": "cite_shares", "kind": "citation", "label": "row_shares_diluted_fy25 = 92.4M", "source_section": "financial-model"},
+    {"id": "cite_top10", "kind": "citation", "label": "row_top10_concentration = 38%", "source_section": "durability"},
+
+    {"id": "assume_margin_persist", "kind": "assumption", "label": "a_margin_persist: GM within 100bp of FY25 through FY28", "source_section": "financial-model"},
+    {"id": "assume_qualified_to_share", "kind": "assumption", "label": "a_ev_qualified_to_share: qualified -> 12-15% share at maturity", "source_section": "growth-runway"},
+    {"id": "assume_capex_self_funded", "kind": "assumption", "label": "a_capex_self_funded: capex fundable from operating CF", "source_section": "growth-runway"},
+    {"id": "assume_no_disruption", "kind": "assumption", "label": "a_no_disruption: no tech/regulatory disruption to moat through FY28", "source_section": "durability"},
+    {"id": "assume_cap_alloc_consistency", "kind": "assumption", "label": "a_capital_allocation_consistency: mgmt continues 62/23/15 mix", "source_section": "management-and-capital-allocation"},
+
+    {"id": "claim_organic_growth", "kind": "claim", "label": "Revenue grew 12.7% organic FY24->FY25", "source_section": "economic-engine"},
+    {"id": "claim_top_decile_roic", "kind": "claim", "label": "ROIC of 24.1% is top-decile in peer set", "source_section": "economic-engine"},
+    {"id": "claim_moat_intact", "kind": "claim", "label": "Manufacturing moat is intact (no attrition signal in channels)", "source_section": "durability"},
+    {"id": "claim_ev_market_growth", "kind": "claim", "label": "EV power-electronics TAM grows from $1.9B to $4.2B by 2028 (28% CAGR)", "source_section": "growth-runway"},
+    {"id": "claim_acme_ev_position", "kind": "claim", "label": "ACME has a credible 12-15% market share path in EV power-electronics", "source_section": "growth-runway"},
+    {"id": "claim_capital_allocation_quality", "kind": "claim", "label": "Mgmt's capital allocation track record is positive (2 of 3 acquisitions met synergies)", "source_section": "management-and-capital-allocation"},
+    {"id": "claim_ev_revenue_500_650m", "kind": "claim", "label": "EV ramp adds $500-650M incremental revenue at maturity", "source_section": "growth-runway"},
+    {"id": "claim_fy28_eps_565", "kind": "claim", "label": "FY28 EPS = $5.65 in base case", "source_section": "financial-model"},
+    {"id": "claim_rerate_22x", "kind": "claim", "label": "Multiple should re-rate from 18x to 22x by FY28", "source_section": "valuation-and-entry"},
+
+    {"id": "conclusion", "kind": "conclusion", "label": "ACME at $84 entry, FY28 target $124 (22x $5.65); IRR ~12% over 3 years", "source_section": "valuation-and-entry"}
+  ],
+  "edges": [
+    {"from": "cite_revenue_fy25", "to": "claim_organic_growth"},
+    {"from": "cite_revenue_fy24", "to": "claim_organic_growth"},
+    {"from": "cite_roic_5yr", "to": "claim_top_decile_roic"},
+    {"from": "cite_peer_roic", "to": "claim_top_decile_roic"},
+    {"from": "cite_channel_attrition", "to": "claim_moat_intact"},
+    {"from": "cite_top10", "to": "claim_moat_intact"},
+    {"from": "cite_ev_tam_2028", "to": "claim_ev_market_growth"},
+    {"from": "cite_ev_platforms_qualified", "to": "claim_acme_ev_position"},
+    {"from": "assume_qualified_to_share", "to": "claim_acme_ev_position"},
+    {"from": "claim_ev_market_growth", "to": "claim_ev_revenue_500_650m"},
+    {"from": "claim_acme_ev_position", "to": "claim_ev_revenue_500_650m"},
+    {"from": "cite_ma_history", "to": "claim_capital_allocation_quality"},
+    {"from": "cite_capex_plan", "to": "claim_ev_revenue_500_650m"},
+    {"from": "assume_capex_self_funded", "to": "claim_ev_revenue_500_650m"},
+
+    {"from": "claim_organic_growth", "to": "claim_fy28_eps_565"},
+    {"from": "claim_top_decile_roic", "to": "claim_fy28_eps_565"},
+    {"from": "claim_moat_intact", "to": "claim_fy28_eps_565"},
+    {"from": "claim_ev_revenue_500_650m", "to": "claim_fy28_eps_565"},
+    {"from": "claim_capital_allocation_quality", "to": "claim_fy28_eps_565"},
+    {"from": "assume_margin_persist", "to": "claim_fy28_eps_565"},
+    {"from": "assume_no_disruption", "to": "claim_fy28_eps_565"},
+    {"from": "assume_cap_alloc_consistency", "to": "claim_fy28_eps_565"},
+    {"from": "cite_gm_fy25", "to": "claim_fy28_eps_565"},
+    {"from": "cite_opm_fy25", "to": "claim_fy28_eps_565"},
+    {"from": "cite_shares", "to": "claim_fy28_eps_565"},
+
+    {"from": "claim_fy28_eps_565", "to": "claim_rerate_22x"},
+    {"from": "claim_top_decile_roic", "to": "claim_rerate_22x"},
+    {"from": "claim_moat_intact", "to": "claim_rerate_22x"},
+
+    {"from": "claim_rerate_22x", "to": "conclusion", "weight": 0.8},
+    {"from": "claim_fy28_eps_565", "to": "conclusion", "weight": 0.9}
+  ]
+}

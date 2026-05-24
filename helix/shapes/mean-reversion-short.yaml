@@ -1,0 +1,58 @@
+name: Mean-reversion short
+slug: mean-reversion-short
+description: >
+  Short thesis on a name trading well above its sustainable multiple,
+  with a quantitative entry rule and a mechanical kill switch.
+  Asymmetric risk profile demands more rigorous adversarial review.
+
+sections:
+  - one-page-summary
+  - thesis
+  - what-the-market-is-pricing
+  - what-we-think-is-true
+  - catalyst-path
+  - sizing-and-borrow
+  - kill-switch              # absolutely required, no exceptions
+  - risks-and-counters
+  - appendix
+
+page_budget: 30
+chart_budget: 8
+
+gates:
+  required:
+    - 01-number-tie
+    - 02-citation-resolver
+    - 03-date-consistency
+    - 04-ticker-validity
+    - 05-chart-render
+    - 06-font-embedding
+    - 07-brand-check
+    - 08-toc-parity
+    - 09-page-budget
+    - 10-disclaimer
+    - 11-spell-grammar
+    - 12-ai-concurrence
+    - 13-argument-graph
+    - 14-counter-thesis      # critical for shorts
+    - 15-base-rate
+    - 16-reflexivity
+    - 17-liquidity            # required for all shorts
+    - 18-disclosure-footprint
+    - 19-audit-trail
+    - 20-constitution
+
+reviewer_panel:
+  - reviewer-forensics       # priority for shorts
+  - reviewer-industry
+  - reviewer-macro
+
+debate:
+  enabled: true
+  turns: 8                    # more turns for shorts (asymmetric risk)
+
+counter_construction:
+  enabled: true
+  focus: >
+    Find the strongest publicly-supported bull case for this name.
+    A short that cannot survive a serious bull attempt does not ship.
